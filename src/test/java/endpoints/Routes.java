@@ -6,4 +6,5 @@ public class Routes {
     public static String login = base_url+"/v1/auth/login";
     public static String verifyMagicLink = base_url+"/v1/auth/verify-magic-link";
 
+
 }

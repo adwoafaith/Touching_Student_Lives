@@ -2,7 +2,6 @@ package endpoints;
 
 
 import LoginPayload.LoginPayload;
-import LoginPayload.MagicLinkToken;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -20,7 +19,7 @@ public class LoginEndpoint {
 
     }
 
-    public static Response verifyMagicLinkEndpoint(MagicLinkToken magicLinkToken){
+    public static Response verifyMagicLinkEndpoint(String magicLinkToken){
         Response response = given()
                     .contentType("application/json")
                     .header("x-client-type","web")
