@@ -17,6 +17,8 @@ public class LoginTest {
     private static String email;
     private static String appPassword;
 
+    public static String authToken;
+
     LoginPayload loginPayload = new LoginPayload();
 
     @BeforeClass
@@ -32,7 +34,7 @@ public class LoginTest {
             email = properties.getProperty("email");
             appPassword = properties.getProperty("app_password");
         } catch (IOException e) {
-            throw new RuntimeException("❌ Failed to load config file: " + e.getMessage());
+            throw new RuntimeException("Failed to load config file: " + e.getMessage());
         }
     }
 
@@ -50,30 +52,30 @@ public class LoginTest {
 
         for (int attempt = 1; attempt <= maxRetries; attempt++) {
             try {
-                System.out.println("⏳ Attempt " + attempt + ": Checking inbox for the magic link...");
+                System.out.println("Attempt " + attempt + ": Checking inbox for the magic link...");
                 List<String> emails = Collections.singletonList(MagicLinkmethod.fetchMagicLinkFromEmail(email, appPassword));
-                System.out.println("📩 Retrieved Emails: " + emails);
+                System.out.println("Retrieved Emails: " + emails);
 
                 magicLink = MagicLinkmethod.fetchMagicLinkFromEmail("womensahfaith@gmail.com", "ssqsqdkjweyoqois");
                 if (magicLink != null && !magicLink.isEmpty()) {
                     break;
                 }
 
-                System.out.println("⚠️ No new unread emails found. Retrying in " + (retryDelay / 1000) + " seconds...");
+                System.out.println("No new unread emails found. Retrying in " + (retryDelay / 1000) + " seconds...");
                 Thread.sleep(retryDelay);
             } catch (Exception e) {
-                System.out.println("❌ Error fetching magic link: " + e.getMessage());
+                System.out.println("Error fetching magic link: " + e.getMessage());
             }
         }
 
         if (magicLink == null || magicLink.isEmpty()) {
-            throw new RuntimeException("V❌ No magic link found after multiple attempts!");
+            throw new RuntimeException("No magic link found after multiple attempts!");
         }
 
         System.out.println("🔗 Fetched Magic Link: " + magicLink);
 
         String extractedToken = MagicLinkmethod.extractToken(magicLink);
-        System.out.println("🔑 Extracted Token: " + extractedToken);
+        System.out.println("Extracted Token: " + extractedToken);
 
         Response response = LoginEndpoint.verifyMagicLinkEndpoint(extractedToken);
         response.then().log().all();
@@ -84,15 +86,15 @@ public class LoginTest {
         System.out.println("🔍 Set-Cookie Header: " + response.getHeaders().getValue("Set-Cookie"));
 
         if (statusCode != 201) {
-            throw new RuntimeException("❌ Login verification failed with status: " + statusCode);
+            throw new RuntimeException("Login verification failed with status: " + statusCode);
         }
 
         // Extract token with correct key
-        String authToken = response.jsonPath().getString("accessToken");
+        authToken = response.jsonPath().getString("accessToken");
         System.out.println("🆕 New Auth Token: " + authToken);
 
         if (authToken == null) {
-            throw new RuntimeException("❌ Failed to retrieve new auth token!");
+            throw new RuntimeException("Failed to retrieve new auth token!");
         }
     }
 }
