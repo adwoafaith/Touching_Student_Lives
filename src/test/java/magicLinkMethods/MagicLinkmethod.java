@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.search.FlagTerm;
+
 import javax.mail.search.SubjectTerm;
 
 
