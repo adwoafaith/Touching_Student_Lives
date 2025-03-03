@@ -1,4 +1,4 @@
-package LoginPayload;
+package Payload;
 
 public class LoginPayload {
     public String getEmail() {

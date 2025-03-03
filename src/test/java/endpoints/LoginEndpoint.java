@@ -1,7 +1,7 @@
 package endpoints;
 
 
-import LoginPayload.LoginPayload;
+import Payload.LoginPayload;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 

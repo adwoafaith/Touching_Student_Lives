@@ -1,6 +1,6 @@
 package test;
 
-import LoginPayload.LoginPayload;
+import Payload.LoginPayload;
 import endpoints.LoginEndpoint;
 import io.restassured.response.Response;
 import magicLinkMethods.MagicLinkmethod;

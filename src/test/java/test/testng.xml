@@ -1,0 +1,8 @@
+<suite name="API Test Suite">
+    <test name="Login and Club Tests">
+        <classes>
+            <class name="test.LoginTest"/>
+            <class name="test.ClubTest"/>
+        </classes>
+    </test>
+</suite>
