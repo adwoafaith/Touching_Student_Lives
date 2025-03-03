@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class LoginTest {
-    private static String email;
+    public static String email;
     private static String appPassword;
 
     public static String authToken;
@@ -91,7 +91,7 @@ public class LoginTest {
 
         // Extract token with correct key
         authToken = response.jsonPath().getString("accessToken");
-        System.out.println("🆕 New Auth Token: " + authToken);
+        System.out.println("New Auth Token: " + authToken);
 
         if (authToken == null) {
             throw new RuntimeException("Failed to retrieve new auth token!");
