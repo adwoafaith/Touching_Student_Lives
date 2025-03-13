@@ -2,6 +2,12 @@ package Payload;
 
 public class ClubPayload {
     private String name;
+    private String description;
+    private String institution_id;
+    private String country_id;
+    private boolean is_active;
+    private String club_logo_url;
+    private String club_banner_url;
 
     public String getName() {
         return name;
@@ -17,14 +23,6 @@ public class ClubPayload {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getClub_admin() {
-        return club_admin;
-    }
-
-    public void setClub_admin(String club_admin) {
-        this.club_admin = club_admin;
     }
 
     public String getInstitution_id() {
@@ -66,12 +64,4 @@ public class ClubPayload {
     public void setClub_banner_url(String club_banner_url) {
         this.club_banner_url = club_banner_url;
     }
-
-    private String description;
-    private String club_admin;
-    private String institution_id;
-    private String country_id;
-    private boolean is_active;
-    private String club_logo_url;
-    private String club_banner_url;
 }
