@@ -74,9 +74,5 @@ public class ClubTest {
         response.then().log().all();
         Assert.assertEquals(response.statusCode(), 201);
 
-//        // Additional validation
-//        JsonPath jsonPath = response.jsonPath();
-//        String createdClubName = jsonPath.getString("data.name");
-//        Assert.assertEquals(createdClubName, clubPayload.getName(), "Club name mismatch!");
     }
 }
