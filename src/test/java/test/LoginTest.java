@@ -56,7 +56,7 @@ public class LoginTest {
                 List<String> emails = Collections.singletonList(MagicLinkmethod.fetchMagicLinkFromEmail(email, appPassword));
                 System.out.println("Retrieved Emails: " + emails);
 
-                magicLink = MagicLinkmethod.fetchMagicLinkFromEmail("womensahfaith@gmail.com", "ssqsqdkjweyoqois");
+                magicLink = MagicLinkmethod.fetchMagicLinkFromEmail(email, appPassword);
                 if (magicLink != null && !magicLink.isEmpty()) {
                     break;
                 }

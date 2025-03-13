@@ -133,4 +133,11 @@ public class ClubTest {
         Assert.assertEquals(response.getStatusCode(), 200,"Expected status code 200 not received");
         Assert.assertTrue(jsonPath.getMap("$").containsKey("name"), "Response does not contain 'name' property");
     }
+
+
+    @Test(priority = 5, dependsOnMethods = "getClubTestCaseAfterCreation")
+    public void deleteClub(){
+        Response response = ClubEndpoint.deleteClub(newlyCreatedClubId);
+        response.then().log().all();
+    }
 }
