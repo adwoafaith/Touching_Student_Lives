@@ -1,5 +1,6 @@
 package endpoints;
 
+import Payload.ClubPayload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -19,7 +20,17 @@ public class ClubEndpoint {
 
     }
 
-    public static Response createClub(){
+    public static Response createClub(ClubPayload clubPayload) {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken) // Use stored auth token
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .body(clubPayload)
+                .when()
+                .post(Routes.createClub);
+        return response;
 
     }
+
 }
