@@ -17,6 +17,6 @@ public class Routes {
 
     //creating of opportunity
     public static String createOpportunity = base_url+"/v1/opportunity";
-    public static String updateOpportunity = base_url+"/v1/opportunity/{post_id}";
+    public static String updateOpportunity = base_url+"/v1/opportunity/{post_Id}";
 
 }
