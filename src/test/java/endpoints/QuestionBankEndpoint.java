@@ -56,6 +56,29 @@ public class QuestionBankEndpoint {
 
     }
 
+    public static Response updateQuestionBank(Map<String, String> formData, String filePath, String questionBankId) {
+
+        File file = new File(filePath);
+        System.out.println("File exists: " + file.exists() + " | Path: " + file.getAbsolutePath());
+
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParam("questionbank_id",questionBankId)
+                .multiPart("image",file,"image/jpeg")
+                .contentType(ContentType.MULTIPART);
+
+        // Add updated form-data dynamically
+        for (Map.Entry<String, String> entry : formData.entrySet()) {
+            request.multiPart(entry.getKey(), entry.getValue());
+        }
+
+        return request.when().put(Routes.updateQuestionBank);
+
+    }
+
+
     public static Response deleteQuestionBank(String questionBankId) {
 
         RequestSpecification request = given()

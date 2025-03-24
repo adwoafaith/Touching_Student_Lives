@@ -1,6 +1,7 @@
 package test;
 
 import dataProvider.QuestionBankDataProvider;
+import dataProvider.UpdateQuestionBankDataProvider;
 import endpoints.QuestionBankEndpoint;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -40,11 +41,19 @@ public class QuestionBankTest {
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200, "Status code is not 200!");
 
+    }
 
+    @Test(priority = 4,dataProvider = "updateQuestionBank", dataProviderClass = UpdateQuestionBankDataProvider.class)
+    public void updatedQuestionBAnkTest(Map<String, String> formData, String filePath){
+        Response response = QuestionBankEndpoint.updateQuestionBank(formData,filePath,questionBankId); //send API request
+        response.prettyPrint();
+        String actualName = response.jsonPath().getString("[0].name"); // // Extract the actual name from the response
+        System.out.println(actualName);
+        Assert.assertEquals(actualName, "Updated Alice Johnson", "The name in the response does not match the expected value!"); // Validate that the name is correct
 
     }
 
-    @Test( priority = 4,dependsOnMethods = "createQuestionBankTest")
+    @Test( priority = 5,dependsOnMethods = "createQuestionBankTest")
     public void deleteQuestionBankTest(){
         Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
         response.prettyPrint();
