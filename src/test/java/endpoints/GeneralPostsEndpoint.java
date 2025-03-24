@@ -21,16 +21,25 @@ public class GeneralPostsEndpoint {
                 .body(formData);
         return request.when().post(Routes.createGeneralPost);
     }
-    public static Response deleteGeneralPosts(String generaPostId) {
+    public static Response updateGeneralPosts(String generalPostId,Map<String, String> formData) {
         RequestSpecification request = given()
                 .header("Authorization", "Bearer " + authToken)
                 .header("Connection", "keep-alive")
                 .header("x-client-type", "web")
-                .pathParams("deletePostId",generaPostId)
+                .pathParams("updatePostId",generalPostId)
+                .body(formData)
+                .contentType(ContentType.JSON);
+
+        return request.when().put(Routes.updateGeneralPost);
+    }
+    public static Response deleteGeneralPosts(String generalPostId) {
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParams("deletePostId",generalPostId)
                 .contentType(ContentType.JSON);
 
         return request.when().delete(Routes.deleteGeneralPost);
     }
-
-
 }
