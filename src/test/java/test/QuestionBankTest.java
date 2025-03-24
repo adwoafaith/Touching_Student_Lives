@@ -11,7 +11,7 @@ import java.util.Map;
 public class QuestionBankTest {
     private static String questionBankId;
 
-    @Test(dataProvider = "createQuestionBank",dataProviderClass = QuestionBankDataProvider.class)
+    @Test(priority = 1, dataProvider = "createQuestionBank",dataProviderClass = QuestionBankDataProvider.class)
     public void createQuestionBankTest(Map<String, String> formData, String filePath){
 
         Response response = QuestionBankEndpoint.createQuestionBank(formData,filePath); //send API request
@@ -24,9 +24,8 @@ public class QuestionBankTest {
 
 
     }
-    @Test(dependsOnMethods = "createQuestionBankTest")
+    @Test(priority = 2, dependsOnMethods = "createQuestionBankTest")
     public void getAllQuestionBankTest(){
-
         Response response = QuestionBankEndpoint.getAllQuestionBank();
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200, "Status code is not 200!");
@@ -35,12 +34,22 @@ public class QuestionBankTest {
 
     }
 
-    @Test(dependsOnMethods = "createQuestionBankTest")
+    @Test( priority = 3,dependsOnMethods = "createQuestionBankTest")
     public void getSingleQuestionBankTest(){
-
         Response response = QuestionBankEndpoint.getSingleQuestionBank(questionBankId);
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200, "Status code is not 200!");
+
+
+
+    }
+
+    @Test( priority = 4,dependsOnMethods = "createQuestionBankTest")
+    public void deleteQuestionBankTest(){
+        Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
+        response.prettyPrint();
+        Assert.assertEquals(response.jsonPath().getString("message"), "Question bank deleted successfully", "Deletion message mismatch!");
+
 
 
 

@@ -64,7 +64,7 @@ public class QuestionBankEndpoint {
                 .header("x-client-type", "web")
                 .pathParam("questionbank_id",questionBankId)
                 .contentType(ContentType.MULTIPART);
-        return request.when().get(Routes.deleteQuestionBank);
+        return request.when().delete(Routes.deleteQuestionBank);
 
     }
 
