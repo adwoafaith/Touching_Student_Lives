@@ -19,4 +19,10 @@ public class Routes {
     public static String createOpportunity = base_url+"/v1/opportunity";
     public static String updateOpportunity = base_url+"/v1/opportunity/{post_Id}";
 
+    //General post endurl
+    public static String createGeneralPost = base_url+"/v1/post";
+    public static String deleteGeneralPost = base_url+"/v1/post/{deletePostId}";
+    public static String updateGeneralPost = base_url+"/v1/post/{id}";
+
+
 }

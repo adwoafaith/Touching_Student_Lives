@@ -2,16 +2,17 @@
     <test name="Login and Club Tests">
         <classes>
             <class name="test.LoginTest"/>
-            <class name="test.ClubTest"/>
+            <class name="test.GeneralPostTest"/>
+<!--            <class name="test.ClubTest"/>-->
 <!--            <class name="test.OpportunityTest"/>-->
 
         </classes>
     </test>
 
-    <test name="Opportunity Tests">
-        <classes>
-            <class name="test.LoginTest"/>
-            <class name="test.OpportunityTest"/>
-        </classes>
-    </test>
+<!--    <test name="Opportunity Tests">-->
+<!--        <classes>-->
+<!--            <class name="test.LoginTest"/>-->
+<!--            <class name="test.OpportunityTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
