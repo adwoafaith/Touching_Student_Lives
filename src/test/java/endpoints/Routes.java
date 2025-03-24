@@ -25,4 +25,16 @@ public class Routes {
     public static String updateGeneralPost = base_url+"/v1/post/{id}";
 
 
+    //MCQS url
+    public static String createQuestionBank = base_url+"v1/question-bank";
+    public static String getAllQuestionBanks = base_url+"v1/question-bank";
+    public static String getSingleQuestionBank = base_url+"v1/question-bank/{questionBank_id}";
+    public static String EditQuestionBank = base_url+"v1/question-bank/{questionBank_id}";
+    public static String deleteQuestionBank = base_url+"v1/question-bank/{questionBank_id}";
+    public static String updateQuestionBank = base_url+"v1/question-bank/{questionBank_id}";
+
+
+
+
+
 }
