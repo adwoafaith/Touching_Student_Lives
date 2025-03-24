@@ -3,6 +3,8 @@ package Payload;
 public class CreateQuestionBankPayload {
     private String name;
     private String stack;
+    private String framework;
+    private String filePath;
 
     public String getName() {
         return name;
@@ -29,21 +31,19 @@ public class CreateQuestionBankPayload {
     }
 
     public String getImage() {
-        return image;
+        return filePath;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.filePath = image;
     }
 
-    private String framework;
-    private String image;
 
     // Constructor
     public CreateQuestionBankPayload(String name, String stack, String framework, String image) {
         this.name = name;
         this.stack = stack;
         this.framework = framework;
-        this.image = image;
+        this.filePath = image;
     }
 }

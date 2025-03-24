@@ -9,12 +9,12 @@ import java.util.Map;
 public class QuestionBankDataProvider {
 
     @DataProvider(name = "createQuestionBank")
-    public static Object[][] provideDeveloperProfileData() {
+    public static Object[][] provideQuestionBankData() {
         CreateQuestionBankPayload questionBankPayload = new CreateQuestionBankPayload(
                 "Alice Johnson",
                 "Full-Stack",
                 "Spring Boot",
-                "https://example.com/alice.jpg"
+                "src/main/resources/1742285372304.jpeg" // File path instead of URL
         );
 
         // Convert the profile into a Map for API request
@@ -22,8 +22,9 @@ public class QuestionBankDataProvider {
         profileData.put("name",  questionBankPayload.getName());
         profileData.put("stack", questionBankPayload.getStack());
         profileData.put("framework", questionBankPayload.getFramework());
-        profileData.put("image", questionBankPayload.getImage());
 
-        return new Object[][]{{profileData}};
+        String filePath = questionBankPayload.getImage(); // Store the file path separately
+
+        return new Object[][]{{profileData, filePath}};
     }
 }

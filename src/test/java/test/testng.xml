@@ -2,7 +2,8 @@
     <test name="Login and Club Tests">
         <classes>
             <class name="test.LoginTest"/>
-            <class name="test.GeneralPostTest"/>
+            <class name="test.QuestionBankTest"/>
+<!--            <class name="test.GeneralPostTest"/>-->
 <!--            <class name="test.ClubTest"/>-->
 <!--            <class name="test.OpportunityTest"/>-->
 
@@ -13,6 +14,7 @@
 <!--        <classes>-->
 <!--            <class name="test.LoginTest"/>-->
 <!--            <class name="test.OpportunityTest"/>-->
+<!--            <class name="test.GeneralPostTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>

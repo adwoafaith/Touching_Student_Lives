@@ -12,9 +12,10 @@ public class QuestionBankTest {
     private static String questionBankId;
 
     @Test(dataProvider = "createQuestionBank",dataProviderClass = QuestionBankDataProvider.class)
-    public void createQuestionBank(Map<String, String> formData){
+    public void createQuestionBank(Map<String, String> formData, String filePath){
 
-        Response response = QuestionBankEndpoint.createQuestionBank(formData); //send API request
+        Response response = QuestionBankEndpoint.createQuestionBank(formData,filePath); //send API request
+        response.prettyPrint();
         questionBankId = response.jsonPath().getString("[0].id");// Extract the question bank ID from the response
         System.out.println("Extracted Question Bank ID: " + questionBankId);
         Assert.assertEquals(response.getStatusCode(), 201, "Status code is not 200!");
@@ -23,4 +24,15 @@ public class QuestionBankTest {
 
 
     }
+    @Test(dependsOnMethods = "createQuestionBank")
+    public void getAllQuestionBank(){
+
+        Response response = QuestionBankEndpoint.getAllQuestionBank();
+        response.prettyPrint();
+        Assert.assertEquals(response.getStatusCode(), 200, "Status code is not 200!");
+
+
+
+    }
+
 }
