@@ -43,4 +43,30 @@ public class QuestionBankEndpoint {
         return request.when().get(Routes.getAllQuestionBanks);
 
     }
+
+    public static Response getSingleQuestionBank(String questionBankId) {
+
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParam("questionbank_id",questionBankId)
+                .contentType(ContentType.MULTIPART);
+        return request.when().get(Routes.getSingleQuestionBank);
+
+    }
+
+    public static Response deleteQuestionBank(String questionBankId) {
+
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParam("questionbank_id",questionBankId)
+                .contentType(ContentType.MULTIPART);
+        return request.when().get(Routes.deleteQuestionBank);
+
+    }
+
+
 }
