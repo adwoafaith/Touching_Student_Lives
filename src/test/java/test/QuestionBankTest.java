@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 public class QuestionBankTest {
-    private static String questionBankId;
+    public static String questionBankId;
 
     @Test(priority = 1, dataProvider = "createQuestionBank",dataProviderClass = QuestionBankDataProvider.class)
     public void createQuestionBankTest(Map<String, String> formData, String filePath){
@@ -53,7 +53,7 @@ public class QuestionBankTest {
 
     }
 
-    @Test( priority = 5,dependsOnMethods = "createQuestionBankTest")
+    //@Test( priority = 5,dependsOnMethods = "createQuestionBankTest")
     public void deleteQuestionBankTest(){
         Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
         response.prettyPrint();

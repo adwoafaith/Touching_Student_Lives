@@ -3,6 +3,7 @@
         <classes>
             <class name="test.LoginTest"/>
             <class name="test.QuestionBankTest"/>
+            <class name="test.QuestionsTest"/>
 <!--            <class name="test.GeneralPostTest"/>-->
 <!--            <class name="test.ClubTest"/>-->
 <!--            <class name="test.OpportunityTest"/>-->

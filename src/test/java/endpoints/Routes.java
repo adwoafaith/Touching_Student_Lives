@@ -25,13 +25,23 @@ public class Routes {
     public static String updateGeneralPost = base_url+"/v1/post/{id}";
 
 
-    //MCQS url
+    //MCQS Question banks url
     public static String createQuestionBank = base_url+"v1/question-bank";
     public static String getAllQuestionBanks = base_url+"v1/question-bank";
     public static String getSingleQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
-    public static String EditQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
     public static String deleteQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
     public static String updateQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
+
+
+    //Questions url
+    public static String uploadQuestionCsv = base_url+"v1/questions/upload";
+    public static String getQuestionById = base_url+"v1/questions/{question_id}";
+    public static String getQuestions = base_url+"v1/questions/upload";
+    public static String getQuestionByBankId = base_url+"v1/questions/questionBank/{questionbank_id}";
+    public static String deleteQuestion = base_url+"v1/questions/{question_id}";
+    public static String createQuestion = base_url+"v1/questions/";
+    public static String getGoldenQuestions = base_url+"v1/questions/golden/{question_id}";
+
 
 
 
