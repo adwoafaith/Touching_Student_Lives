@@ -1,0 +1,20 @@
+question,option_a,option_b,option_c,option_d,answers,is_golden
+What is Node.js?,A front-end framework,A server-side JavaScript runtime,A database system,A CSS preprocessor,B,FALSE
+Which of the following are NoSQL databases?,MongoDB,MySQL,Redis,PostgreSQL,A,FALSE
+Which of these are valid HTTP methods?,GET,POST,INSERT,DELETE,A,FALSE
+What is Docker?,A containerization platform,A cloud provider,A programming language,A database management system,A,TRUE
+Which of these are JavaScript frameworks or libraries?,React,Laravel,Vue,Django,A,FALSE
+Which of the following are features of Node.js?,Event-driven,I/O bound,Single-threaded,Client-side framework,A,FALSE
+Which of these are programming languages?,JavaScript,HTML,CSS,Python,A,TRUE
+Which of these are frontend technologies?,React,Vue,Docker,Angular,A,FALSE
+Which of the following are relational databases?,MySQL,MongoDB,PostgreSQL,SQLite,A,TRUE
+Which of these are CI/CD tools?,Jenkins,Github Actions,Redis,Travis CI,A,TRUE
+What is Git?,A version control system,A cloud provider,A CI/CD tool,A programming language,A,FALSE
+Which of these are cloud service providers?,AWS,Azure,GitHub,Google Cloud,A,TRUE
+Which of these are container orchestration tools?,Docker,Kubernetes,Ansible,OpenShift,A,TRUE
+What is Linux?,An operating system,A database management system,A programming language,A cloud service,A,FALSE
+Which of these are valid SQL operations?,SELECT,UPDATE,INSERT,DELETE,A,TRUE
+What is REST API?,An architectural style for building APIs,A programming language,A testing framework,A container tool,A,TRUE
+What is the use of CSS?,Styling HTML content,Defining API routes,Managing database connections,Building JavaScript frameworks,A,FALSE
+Which of these are DevOps tools?,Ansible,Jenkins,GitHub,Angular,A,FALSE
+What is Kubernetes?,A container orchestration platform,A monitoring tool,A package manager,A virtual machine,A,FALSE
