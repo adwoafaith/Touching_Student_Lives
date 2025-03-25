@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QuestionsTest {
+
     @Test(priority = 1, dependsOnMethods = "createQuestionBankTest",
          dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
     public void QuestionTest(CreateQuestionPayload questions) throws JsonProcessingException {
@@ -27,11 +28,20 @@ public class QuestionsTest {
         List<List<Map<String, Object>>> outerList = response.jsonPath().getList("$");
         Assert.assertFalse(outerList.isEmpty(), "Response body is empty");
 
-        List<Map<String, Object>> responseBody = outerList.get(0); // ✅ Extract the inner list
+        List<Map<String, Object>> responseBody = outerList.get(0); //  Extract the inner list
         Assert.assertFalse(responseBody.isEmpty(), "Inner list is empty");
 
-        Map<String, Object> questionData = responseBody.get(0); // ✅ Extract the first question
+        Map<String, Object> questionData = responseBody.get(0); // Extract the first question
         Assert.assertNotNull(questionData.get("id"), "Question ID is missing"); // Validate ID
         Assert.assertEquals(questionData.get("answers"), "A,C,D", "Answers mismatch!");
     }
+
+    @Test(priority = 2)
+    public void GetAllQuestionsTest()  {
+        Response response = QuestionsEndpoint.GetAllQuestionsEndpoint(); // Send API request
+        response.then().log().body(); //print response
+        Assert.assertEquals(response.statusCode(),200, "Status code mismatch "); //validate status code
+
+    }
+
 }

@@ -36,7 +36,7 @@ public class Routes {
     //Questions url
     public static String uploadQuestionCsv = base_url+"v1/questions/upload";
     public static String getQuestionById = base_url+"v1/questions/{question_id}";
-    public static String getQuestions = base_url+"v1/questions/upload";
+    public static String getAllQuestions = base_url+"v1/questions";
     public static String getQuestionByBankId = base_url+"v1/questions/questionBank/{questionbank_id}";
     public static String deleteQuestion = base_url+"v1/questions/{question_id}";
     public static String createQuestion = base_url+"v1/questions/";
