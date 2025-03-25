@@ -55,4 +55,16 @@ public class QuestionsTest {
 
     }
 
+    @Test(priority = 4)
+    public void deleteQuestionsTest()  {
+        Response response = QuestionsEndpoint.deleteQuestionsEndpoint(questionCreationId); // Send API request
+        response.then().log().body(); //print response
+        Assert.assertEquals(response.statusCode(),200, "Status code mismatch "); //validate status code
+        String message = response.jsonPath().getString("message"); //store response message in a variable
+        Assert.assertEquals(message,"Question deleted successfully","Message does not match"); //validate response message
+        int code = response.jsonPath().getInt("statusCode"); //store status code in the body in a variable
+        Assert.assertEquals(code, 200, "Status code is not 200");
+
+    }
+
 }
