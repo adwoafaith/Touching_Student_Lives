@@ -38,10 +38,10 @@ public class QuestionsEndpoint {
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken)
                 .header("Connection", "keep-alive")
-                .pathParam("question_id",question_id)
+                .pathParam("questionId",question_id)
                 .header("x-client-type", "web");
 
-        Response response = request.when().post(Routes.getQuestionById);
+        Response response = request.when().get(Routes.getQuestionById);
         return response;
     }
     public static Response deleteQuestionsEndpoint(String question_id) {
