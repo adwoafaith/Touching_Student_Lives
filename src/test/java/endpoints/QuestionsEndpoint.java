@@ -7,15 +7,12 @@ import io.restassured.specification.RequestSpecification;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 
 import static io.restassured.RestAssured.given;
 import static test.LoginTest.authToken;
-import static test.QuestionBankTest.questionBankId;
-import static test.QuestionsTest.questionCreationId;
+
 
 public class QuestionsEndpoint {
 

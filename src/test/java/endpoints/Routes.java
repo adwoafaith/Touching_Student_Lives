@@ -43,6 +43,16 @@ public class Routes {
     public static String getGoldenQuestions = base_url+"v1/questions/golden/{questionId}";
 
 
+    //Quizzes url
+    public static String createQuiz = base_url+"v1/quiz/";
+    public static String deleteQuiz = base_url+"v1/quiz/{quizId}";
+    public static String getAllQuiz = base_url+"v1/quiz/";
+    public static String GetSingleQuiz = base_url+"v1/quiz/{quizId}";
+    public static String updateQuiz = base_url+"v1/quiz/{quizId}";
+
+
+
+
 
 
 

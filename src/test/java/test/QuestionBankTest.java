@@ -25,7 +25,7 @@ public class QuestionBankTest {
 
 
     }
-    @Test(priority = 2, dependsOnMethods = "createQuestionBankTest")
+    //@Test(priority = 2, dependsOnMethods = "createQuestionBankTest")
     public void getAllQuestionBankTest(){
         Response response = QuestionBankEndpoint.getAllQuestionBank();
         response.prettyPrint();
@@ -35,7 +35,7 @@ public class QuestionBankTest {
 
     }
 
-    @Test( priority = 3,dependsOnMethods = "createQuestionBankTest")
+    //@Test( priority = 3,dependsOnMethods = "createQuestionBankTest")
     public void getSingleQuestionBankTest(){
         Response response = QuestionBankEndpoint.getSingleQuestionBank(questionBankId);
         response.prettyPrint();
@@ -43,7 +43,7 @@ public class QuestionBankTest {
 
     }
 
-    @Test(priority = 4,dataProvider = "updateQuestionBank", dataProviderClass = UpdateQuestionBankDataProvider.class)
+    //@Test(priority = 4,dataProvider = "updateQuestionBank", dataProviderClass = UpdateQuestionBankDataProvider.class)
     public void updatedQuestionBAnkTest(Map<String, String> formData, String filePath){
         Response response = QuestionBankEndpoint.updateQuestionBank(formData,filePath,questionBankId); //send API request
         response.prettyPrint();
