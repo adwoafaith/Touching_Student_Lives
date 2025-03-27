@@ -51,6 +51,10 @@ public class Routes {
     public static String updateQuiz = base_url+"v1/quiz/{quizId}";
 
 
+    //Leaderboard url
+    public static String leaderboard = base_url+"/v1/leader-board/web";
+
+
 
 
 
