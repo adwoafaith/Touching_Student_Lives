@@ -50,9 +50,18 @@ public class Routes {
     public static String GetSingleQuiz = base_url+"v1/quiz/{quizId}";
     public static String updateQuiz = base_url+"v1/quiz/{quizId}";
 
-
     //Leaderboard url
     public static String leaderboard = base_url+"/v1/leader-board/web";
+
+    //get institutions url
+    public static String getInstitutions = base_url+"/v1/institution/";
+
+    //raffle url
+    public static String createRaffle = base_url+"/v1/raffle";
+    public static String getActiveRaffle = base_url+"/v1/raffle";
+    public static String getRaffleParticipantsDetails = base_url+"/v1/raffle";
+    public static String getAllRaffle = base_url+"/v1/raffle";
+
 
 
 

@@ -2,7 +2,9 @@
     <test name="Login and Club Tests">
         <classes>
             <class name="test.LoginTest"/>
-            <class name="test.LeaderboardTest"/>
+            <class name="test.RaffleTest"/>
+<!--            <class name="test.GetInstitutionsTest"/>-->
+<!--            <class name="test.LeaderboardTest"/>-->
 <!--            <class name="test.QuestionBankTest"/>-->
 <!--            <class name="test.QuestionsTest"/>-->
 <!--            <class name="test.QuizTest"/>-->
