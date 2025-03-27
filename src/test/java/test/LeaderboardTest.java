@@ -104,4 +104,29 @@ public class LeaderboardTest {
         Assert.assertNotNull("data.rank","rank is not present");
         Assert.assertNotNull("data.level","Name is not present");
     }
+
+
+    @Test(priority = 8)
+    public void leaderBoardFourthQuarterTest(){
+
+        Response response = LeaderboadEndpoint.leaderBoardFourthQuarterEndpoint();
+        response.prettyPrint();
+
+        Assert.assertNotNull("data.student_id","student id is not present");
+        Assert.assertNotNull("data.first_name","Name is not present");
+        Assert.assertNotNull("data.rank","rank is not present");
+        Assert.assertNotNull("data.level","Name is not present");
+    }
+
+    @Test(priority = 8)
+    public void leaderBoardAllTimeTest(){
+
+        Response response = LeaderboadEndpoint.leaderBoardAllTimeQuarterEndpoint();
+        response.prettyPrint();
+
+        Assert.assertNotNull("data.student_id","student id is not present");
+        Assert.assertNotNull("data.first_name","Name is not present");
+        Assert.assertNotNull("data.rank","rank is not present");
+        Assert.assertNotNull("data.level","Name is not present");
+    }
 }

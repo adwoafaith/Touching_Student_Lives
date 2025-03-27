@@ -95,4 +95,25 @@ public class LeaderboadEndpoint {
         Response response = request.when().get(Routes.leaderboard);
         return response;
     }
+
+    public static Response leaderBoardFourthQuarterEndpoint() {
+        RequestSpecification request = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken)
+                .queryParams("page", 1, "limit", 10, "order", "desc", "period","fourth-quarter")
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web");
+        Response response = request.when().get(Routes.leaderboard);
+        return response;
+    }
+    public static Response leaderBoardAllTimeQuarterEndpoint() {
+        RequestSpecification request = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken)
+                .queryParams("page", 1, "limit", 10, "order", "desc", "period","all-time")
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web");
+        Response response = request.when().get(Routes.leaderboard);
+        return response;
+    }
 }
