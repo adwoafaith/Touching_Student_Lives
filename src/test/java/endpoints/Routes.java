@@ -58,9 +58,10 @@ public class Routes {
 
     //raffle url
     public static String createRaffle = base_url+"/v1/raffle";
-    public static String getActiveRaffle = base_url+"/v1/raffle";
-    public static String getRaffleParticipantsDetails = base_url+"/v1/raffle";
+    public static String getRaffleStatus = base_url+"/v1/raffle";
+    public static String getRaffleParticipantsDetails = base_url+"/v1/raffle/participants";
     public static String getAllRaffle = base_url+"/v1/raffle";
+    public static String getAllRaffleWinners = base_url+"/v1/raffle/winners/";
 
 
 
