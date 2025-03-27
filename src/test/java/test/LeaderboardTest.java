@@ -118,7 +118,7 @@ public class LeaderboardTest {
         Assert.assertNotNull("data.level","Name is not present");
     }
 
-    @Test(priority = 8)
+    @Test(priority = 9)
     public void leaderBoardAllTimeTest(){
 
         Response response = LeaderboadEndpoint.leaderBoardAllTimeQuarterEndpoint();
