@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class QuizTest {
 
     public static String quizId;
-    @Test(priority = 2, dataProvider = "quizData", dataProviderClass = QuizDataProvider.class)
+    @Test(priority = 1, dataProvider = "quizData", dataProviderClass = QuizDataProvider.class)
     public void createQuiz(QuizPayload quizPayload) {
 
         System.out.println("Sending payload: " + new Gson().toJson(quizPayload)); // Print payload before sending
@@ -25,5 +25,16 @@ public class QuizTest {
         String title = response.jsonPath().getString("title");
         Assert.assertEquals(title,"Advance React");
         System.out.println(quizId);
+    }
+
+    @Test(priority = 2)
+    public void getAllQuizTest() {
+
+        Response response = QuizEndpoints.getAllQuiz();
+
+        response.then().log().body();
+        //perform assertion
+        String id = response.jsonPath().getString("id");
+
     }
 }

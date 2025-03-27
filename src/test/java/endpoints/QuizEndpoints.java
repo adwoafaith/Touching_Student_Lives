@@ -20,4 +20,15 @@ public class QuizEndpoints {
         Response response = request.when().post(Routes.createQuiz);
         return response;
     }
+
+    public static Response getAllQuiz() {
+        RequestSpecification request = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web");
+
+        Response response = request.when().get(Routes.getAllQuiz);
+        return response;
+    }
 }

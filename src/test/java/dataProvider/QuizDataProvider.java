@@ -26,7 +26,7 @@ public class QuizDataProvider {
                         new QuizPayload(
                                 "Advance React",
                                 questionBankId,
-                                10,
+                                1,
                                 1,
                                 getFutureTimestamp(10),   // Start time 5 mins ahead
                                 getFutureTimestamp(65),  // End time 65 mins ahead

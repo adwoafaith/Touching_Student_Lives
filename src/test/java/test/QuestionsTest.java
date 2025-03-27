@@ -21,8 +21,8 @@ import java.util.Map;
 public class QuestionsTest {
     public static String questionCreationId; //store question id in this variable
 
-    //@Test(priority = 1, dependsOnMethods = "createQuestionBankTest",
-        // dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
+    @Test(priority = 1, dependsOnMethods = "createQuestionBankTest",
+         dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
     public void QuestionTest(CreateQuestionPayload questions) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String questionJson = objectMapper.writeValueAsString(questions); // Convert to JSON string
@@ -73,7 +73,7 @@ public class QuestionsTest {
 
     }
 
-    @Test(priority = 5)
+   // @Test(priority = 5)
     public void uploadQuestionsCsvTest() throws IOException {
         File csvFile = new File("src/main/resources/questions (1).csv");
 
