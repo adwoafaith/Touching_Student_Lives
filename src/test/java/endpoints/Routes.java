@@ -26,7 +26,7 @@ public class Routes {
 
     //Events post endurl
     public static String creatingEventsPost = base_url+"/v1/event";
-
+    public static String deleteEventsPost = base_url+"/v1/post/{deletePostId}";
 
 
     //MCQS Question banks url

@@ -1,27 +1,26 @@
 package test;
 
-import endpoints.EventsTestEndpoint;
+import endpoints.EventsEndpoint;
+import endpoints.GeneralPostsEndpoint;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.Map;
 import dataProvider.EventDataProvider;
 
 public class EventsTest {
-    @Test(dataProvider = "eventDataProvider", dataProviderClass = EventDataProvider.class)
-    public void createEventTest(Map<String, Object> formData) {  // Changed from Map<String, String>
+    public static String eventId;
 
-        File imageFile = new File("src/main/resources/1742285372304.jpeg");
-        System.out.println("File exists: " + imageFile.exists());
+    @Test(priority = 1, dataProvider = "eventDataProvider", dataProviderClass = EventDataProvider.class)
+    public void createEventTest(Map<String, Object> formData) {
 
-        System.out.println("Request Payload: " + formData);
-        Response response = EventsTestEndpoint.createEvent(formData);
 
+        Response response = EventsEndpoint.createEvent(formData);
+        eventId = response.jsonPath().getString("id");
         if(response.getStatusCode() != 201) {
             System.out.println("Full Response:");
-            response.then().log().all();
+            response.then().log().body();
         }
 
         Assert.assertEquals(response.getStatusCode(), 201, "Status code is not 201!");
@@ -37,5 +36,12 @@ public class EventsTest {
                 formData.get("status").toString(),  // Added .toString() for Object
                 "Status doesn't match!"
         );
+    }
+
+    @Test(priority = 2)
+    public void deleteEventPost() {
+        Response deleteResponse = EventsEndpoint.deleteEventPosts(eventId);
+        Assert.assertEquals(deleteResponse.getStatusCode(), 200, "Failed to delete post! Expected 200 but got " + deleteResponse.getStatusCode());
+
     }
 }

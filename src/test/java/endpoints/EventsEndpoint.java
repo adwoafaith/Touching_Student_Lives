@@ -1,5 +1,6 @@
 package endpoints;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.io.File;
@@ -7,7 +8,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static test.LoginTest.authToken;
 
-public class EventsTestEndpoint {
+public class EventsEndpoint {
 
     public static Response createEvent(Map<String, Object> formData) {
         RequestSpecification request = given()
@@ -26,5 +27,16 @@ public class EventsTestEndpoint {
         }
 
         return request.post(Routes.creatingEventsPost);
+    }
+
+    public static Response deleteEventPosts(String eventPostId) {
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParams("deletePostId",eventPostId)
+                .contentType(ContentType.JSON);
+
+        return request.when().delete(Routes.deleteEventsPost);
     }
 }
