@@ -24,6 +24,10 @@ public class Routes {
     public static String deleteGeneralPost = base_url+"/v1/post/{deletePostId}";
     public static String updateGeneralPost = base_url+"/v1/post/{id}";
 
+    //Events post endurl
+    public static String creatingEventsPost = base_url+"/v1/event";
+
+
 
     //MCQS Question banks url
     public static String createQuestionBank = base_url+"v1/question-bank";
