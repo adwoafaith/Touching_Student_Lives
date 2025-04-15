@@ -53,15 +53,17 @@ public class QuestionBankTest {
 
     }
 
-    //@Test( priority = 5,dependsOnMethods = "createQuestionBankTest")
-    public void deleteQuestionBankTest(){
-        Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
-        response.prettyPrint();
-        Assert.assertEquals(response.jsonPath().getString("message"), "Question bank deleted successfully", "Deletion message mismatch!");
-
-
-
-
-    }
+//    @Test(priority = 5)
+//    public void deleteQuestionBankTest() {
+//        if (questionBankId == null) {
+//            throw new IllegalArgumentException("questionBankId is null - nothing to delete");
+//        }
+//        Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
+//        response.prettyPrint();
+//        Assert.assertEquals(response.jsonPath().getString("message"),
+//                "Question bank deleted successfully",
+//                "Deletion message mismatch!");
+//        Assert.assertEquals(response.getStatusCode(), 200, "Status code mismatch");
+//    }
 
 }

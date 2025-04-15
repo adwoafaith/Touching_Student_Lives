@@ -1,7 +1,7 @@
 package endpoints;
 
 public class Routes {
-    public static String base_url = "https://api-tslp.amalitech-dev.net/api/";
+    public static String base_url = "https://api-tslp-staging.amalitech-dev.net/api";
 
     //login
     public static String login = base_url+"/v1/auth/login";
@@ -30,29 +30,29 @@ public class Routes {
 
 
     //MCQS Question banks url
-    public static String createQuestionBank = base_url+"v1/question-bank";
-    public static String getAllQuestionBanks = base_url+"v1/question-bank";
-    public static String getSingleQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
-    public static String deleteQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
-    public static String updateQuestionBank = base_url+"v1/question-bank/{questionbank_id}";
+    public static String createQuestionBank = base_url+"/v1/question-bank";
+    public static String getAllQuestionBanks = base_url+"/v1/question-bank";
+    public static String getSingleQuestionBank = base_url+"/v1/question-bank/{questionbank_id}";
+    public static String deleteQuestionBank = base_url+"/v1/question-bank/{questionbank_id}";
+    public static String updateQuestionBank = base_url+"/v1/question-bank/{questionbank_id}";
 
 
     //Questions url
-    public static String uploadQuestionCsv = base_url+"v1/questions/upload";
-    public static String getQuestionById = base_url+"v1/questions/{questionId}";
-    public static String getAllQuestions = base_url+"v1/questions";
-    public static String getQuestionByBankId = base_url+"v1/questions/questionBank/{questionId}";
-    public static String deleteQuestion = base_url+"v1/questions/{questionId}";
-    public static String createQuestion = base_url+"v1/questions/";
-    public static String getGoldenQuestions = base_url+"v1/questions/golden/{questionId}";
+    public static String uploadQuestionCsv = base_url+"/v1/questions/upload";
+    public static String getQuestionById = base_url+"/v1/questions/{questionId}";
+    public static String getAllQuestions = base_url+"/v1/questions";
+    public static String getQuestionByBankId = base_url+"/v1/questions/questionBank/{questionId}";
+    public static String deleteQuestion = base_url+"/v1/questions/{questionId}";
+    public static String createQuestion = base_url+"/v1/questions/";
+    public static String getGoldenQuestions = base_url+"/v1/questions/golden/{questionId}";
 
 
     //Quizzes url
-    public static String createQuiz = base_url+"v1/quiz/";
-    public static String deleteQuiz = base_url+"v1/quiz/{quizId}";
-    public static String getAllQuiz = base_url+"v1/quiz/";
-    public static String GetSingleQuiz = base_url+"v1/quiz/{quizId}";
-    public static String updateQuiz = base_url+"v1/quiz/{quizId}";
+    public static String createQuiz = base_url+"/v1/quiz/";
+    public static String deleteQuiz = base_url+"/v1/quiz/{quizId}";
+    public static String getAllQuiz = base_url+"/v1/quiz/";
+    public static String GetSingleQuiz = base_url+"/v1/quiz/{quizId}";
+    public static String updateQuiz = base_url+"/v1/quiz/{quizId}";
 
     //Leaderboard url
     public static String leaderboard = base_url+"/v1/leader-board/web";

@@ -2,34 +2,33 @@ package dataProvider;
 
 import Payload.QuizPayload;
 import org.testng.annotations.DataProvider;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static test.QuestionBankTest.questionBankId;
 
 public class QuizDataProvider {
-
-    // Method to get future timestamp
-    private static String getFutureTimestamp(int minutesAhead) {
-        LocalDateTime futureTime = LocalDateTime.now().plusMinutes(minutesAhead);
-        // Match exactly the format your API expects: "yyyy-MM-dd HH:mm:ss.SSS"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        return futureTime.format(formatter);
-    }
-
+    private static final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     @DataProvider(name = "quizData")
     public Object[][] getQuizData() {
+        // Use a known valid question bank ID from your Postman test
+
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime startTime = now.plusMinutes(10);
+        LocalDateTime endTime = startTime.plusHours(1);
+
         return new Object[][] {
                 {
                         new QuizPayload(
-                                "Advance React",
+                                "Advance React II",
                                 questionBankId,
                                 1,
                                 1,
-                                getFutureTimestamp(10),   // Start time 5 mins ahead
-                                getFutureTimestamp(65),  // End time 65 mins ahead
+                                startTime.format(formatter),
+                                endTime.format(formatter),
                                 "active"
                         )
                 }

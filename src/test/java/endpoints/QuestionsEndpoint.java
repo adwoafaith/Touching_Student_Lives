@@ -65,6 +65,7 @@ public class QuestionsEndpoint {
         Response response = request.when().get(Routes.getQuestionById);
         return response;
     }
+
     public static Response deleteQuestionsEndpoint(String question_id) {
         RequestSpecification request = given()
                 .contentType(ContentType.JSON)

@@ -1,96 +1,31 @@
 package Payload;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.google.gson.annotations.SerializedName;
-
-public class QuizPayload{
-
-    @SerializedName("title")
+public class QuizPayload {
     private String title;
-
-    @SerializedName("question_bank_id")
-    private String questionBankId;
-
-    @SerializedName("total_questions")
-    private int totalQuestions;
-
-    @SerializedName("time_per_question")
-    private int timePerQuestion;
-
-    @SerializedName("start_time")
-    private String startTime;
-
-    @SerializedName("end_at")
-    private String endAt;
-
-    @SerializedName("status")
+    private String question_bank_id; // Fixed field name consistency
+    private int total_questions;
+    private int time_per_question;
+    private String start_time;
+    private String end_at;
     private String status;
 
-    // Constructor
-    public QuizPayload(String title, String questionBankId, int totalQuestions, int timePerQuestion, String startTime, String endAt, String status) {
+    public QuizPayload(String title, String question_bank_id, int total_questions,
+                       int time_per_question, String start_time, String end_at, String status) {
         this.title = title;
-        this.questionBankId = questionBankId;
-        this.totalQuestions = totalQuestions;
-        this.timePerQuestion = timePerQuestion;
-        this.startTime = startTime;
-        this.endAt = endAt;
+        this.question_bank_id = question_bank_id; // Use actual parameter
+        this.total_questions = total_questions;
+        this.time_per_question = time_per_question;
+        this.start_time = start_time;
+        this.end_at = end_at;
         this.status = status;
     }
 
-    // Getters and Setters
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getQuestionBankId() {
-        return questionBankId;
-    }
-
-    public void setQuestionBankId(String questionBankId) {
-        this.questionBankId = questionBankId;
-    }
-
-    public int getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    public void setTotalQuestions(int totalQuestions) {
-        this.totalQuestions = totalQuestions;
-    }
-
-    public int getTimePerQuestion() {
-        return timePerQuestion;
-    }
-
-    public void setTimePerQuestion(int timePerQuestion) {
-        this.timePerQuestion = timePerQuestion;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndAt() {
-        return endAt;
-    }
-
-    public void setEndAt(String endAt) {
-        this.endAt = endAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    // Getters - must match exact field names
+    public String getTitle() { return title; }
+    public String getQuestion_bank_id() { return question_bank_id; }
+    public int getTotal_questions() { return total_questions; }
+    public int getTime_per_question() { return time_per_question; }
+    public String getStart_time() { return start_time; }
+    public String getEnd_at() { return end_at; }
+    public String getStatus() { return status; }
 }

@@ -9,20 +9,21 @@ import endpoints.QuestionsEndpoint;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.Map;
 
 public class QuestionsTest {
     public static String questionCreationId; //store question id in this variable
+    public static String questionBankId;
 
-    @Test(priority = 1, dependsOnMethods = "createQuestionBankTest",
-         dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
+
+    @Test(priority = 1,dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
     public void QuestionTest(CreateQuestionPayload questions) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String questionJson = objectMapper.writeValueAsString(questions); // Convert to JSON string
@@ -45,7 +46,7 @@ public class QuestionsTest {
 
     }
 
-    //@Test(priority = 2)
+    @Test(priority = 2, dependsOnMethods = "createQuestionBankTest")
     public void GetAllQuestionsTest()  {
         Response response = QuestionsEndpoint.GetAllQuestionsEndpoint(); // Send API request
         response.then().log().body(); //print response
@@ -53,7 +54,7 @@ public class QuestionsTest {
 
     }
 
-    //@Test(priority = 3)
+    @Test(priority = 3, dependsOnMethods = "createQuestionBankTest")
     public void GetSingleQuestionsTest()  {
         Response response = QuestionsEndpoint.GetSingleQuestionEndpoint(questionCreationId); // Send API request
         response.then().log().body(); //print response
@@ -61,7 +62,7 @@ public class QuestionsTest {
 
     }
 
-    //@Test(priority = 4)
+    @Test(priority = 4)
     public void deleteQuestionsTest()  {
         Response response = QuestionsEndpoint.deleteQuestionsEndpoint(questionCreationId); // Send API request
         response.then().log().body(); //print response
@@ -73,7 +74,7 @@ public class QuestionsTest {
 
     }
 
-   // @Test(priority = 5)
+   @Test(priority = 5)
     public void uploadQuestionsCsvTest() throws IOException {
         File csvFile = new File("src/main/resources/questions (1).csv");
 

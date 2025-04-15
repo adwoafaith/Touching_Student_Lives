@@ -9,14 +9,12 @@ import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 import java.util.Properties;
 
 public class LoginTest {
     public static String email;
     private static String appPassword;
-
     public static String authToken;
 
     LoginPayload loginPayload = new LoginPayload();
@@ -39,62 +37,45 @@ public class LoginTest {
     }
 
     @Test(priority = 1)
-    public void LoginTestCase() {
-        Response response = LoginEndpoint.login(loginPayload);
-        response.then().log().all();
-    }
+    public void loginAndVerifyMagicLink() {
+        // Record exact time right before sending request
+        long requestStartTime = System.currentTimeMillis();
 
-    @Test(priority = 2)
-    public void verifyMagicLinkTestCase() {
-        String magicLink = null;
+        // Step 1: Trigger login email
+        System.out.println("🔐 Sending login request at: " + new Date(requestStartTime));
+        Response loginResponse = LoginEndpoint.login(loginPayload);
+
+        // Step 2: Fetch token with precise timing
+        String extractedToken = null;
         int maxRetries = 10;
-        int retryDelay = 15000; // 15 seconds delay
+        int retryDelay = 5000;
 
         for (int attempt = 1; attempt <= maxRetries; attempt++) {
             try {
-                System.out.println("Attempt " + attempt + ": Checking inbox for the magic link...");
-                List<String> emails = Collections.singletonList(MagicLinkmethod.fetchMagicLinkFromEmail(email, appPassword));
-                System.out.println("Retrieved Emails: " + emails);
+                System.out.println("📬 Attempt " + attempt + " at: " + new Date());
+                extractedToken = MagicLinkmethod.fetchTokenFromEmail(email, appPassword, requestStartTime);
 
-                magicLink = MagicLinkmethod.fetchMagicLinkFromEmail(email, appPassword);
-                if (magicLink != null && !magicLink.isEmpty()) {
-                    break;
+                if (extractedToken != null) {
+                    // Immediate verification after extraction
+                    System.out.println("✅ Verifying magic link token...");
+                    Response verifyResponse = LoginEndpoint.verifyMagicLinkEndpoint(extractedToken);
+
+                    if (verifyResponse.getStatusCode() == 201) {
+                        authToken = verifyResponse.jsonPath().getString("accessToken");
+                        System.out.println("✅ Verification successful!");
+                        return; // Exit on success
+                    } else {
+                        System.out.println("⚠️ Verification failed, retrying...");
+                        extractedToken = null; // Reset token to force retry
+                    }
                 }
 
-                System.out.println("No new unread emails found. Retrying in " + (retryDelay / 1000) + " seconds...");
                 Thread.sleep(retryDelay);
             } catch (Exception e) {
-                System.out.println("Error fetching magic link: " + e.getMessage());
+                System.out.println("❌ Error: " + e.getMessage());
             }
         }
 
-        if (magicLink == null || magicLink.isEmpty()) {
-            throw new RuntimeException("No magic link found after multiple attempts!");
-        }
-
-        System.out.println("🔗 Fetched Magic Link: " + magicLink);
-
-        String extractedToken = MagicLinkmethod.extractToken(magicLink);
-        System.out.println("Extracted Token: " + extractedToken);
-
-        Response response = LoginEndpoint.verifyMagicLinkEndpoint(extractedToken);
-        response.then().log().all();
-
-        // Log status code and headers
-        int statusCode = response.getStatusCode();
-        System.out.println("📡 Response Status Code: " + statusCode);
-        System.out.println("🔍 Set-Cookie Header: " + response.getHeaders().getValue("Set-Cookie"));
-
-        if (statusCode != 201) {
-            throw new RuntimeException("Login verification failed with status: " + statusCode);
-        }
-
-        // Extract token with correct key
-        authToken = response.jsonPath().getString("accessToken");
-        System.out.println("New Auth Token: " + authToken);
-
-        if (authToken == null) {
-            throw new RuntimeException("Failed to retrieve new auth token!");
-        }
+        throw new RuntimeException("❌ Failed to complete magic link verification");
     }
 }

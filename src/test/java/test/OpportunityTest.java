@@ -14,7 +14,7 @@ import java.util.Map;
 public class OpportunityTest {
     private static String opportunityId;
 
-    @Test(priority = 1, dependsOnMethods = "test.LoginTest.LoginTestCase", dataProvider = "opportunityDataProvider", dataProviderClass = dataProvider.OpportunityDataProvider.class)
+    @Test(priority = 1, dependsOnMethods = "test.LoginTest.loginAndVerifyMagicLink", dataProvider = "opportunityDataProvider", dataProviderClass = dataProvider.OpportunityDataProvider.class)
     public void createOpportunityTest(Map<String, String> formData){
         Response response = OpportunityEndpoint.createOpportunity(formData);
 
