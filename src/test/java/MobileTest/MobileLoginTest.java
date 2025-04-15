@@ -6,6 +6,8 @@ import Mobile.MobileLoginEndpoint;
 import io.restassured.response.Response;
 
 import magicLinkMethods.OtpFetcher;
+import org.json.JSONObject;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -79,10 +81,29 @@ public class MobileLoginTest {
         Response otpVerifyResponse = MobileLoginEndpoint.verifyOTPMobileEndpoint(otpCode);
 
         if (otpVerifyResponse.getStatusCode() == 201) {
-            authToken = otpVerifyResponse.jsonPath().getString("accessToken");
+//            authToken = otpVerifyResponse.jsonPath().getString("accessToken");
+            System.out.println(authToken);
             System.out.println("✅ Mobile OTP verification successful!");
+
+            //perform assertions
+            JSONObject jsonObject = new JSONObject(otpVerifyResponse.getBody().asString());
+
+            String accessToken = jsonObject.optString("accessToken");
+            JSONObject user = jsonObject.getJSONObject("user");
+            String emailReturned = user.optString("email");
+            JSONObject studentProfile = user.optJSONObject("student_profile");
+
+            Assert.assertNotNull(accessToken, "Access token should not be null");
+            Assert.assertFalse(accessToken.isEmpty(), "Access token should not be empty");
+            Assert.assertNotNull(user, "User object should not be null");
+            Assert.assertEquals(emailReturned, email, "Returned email should match login email");
+            Assert.assertNotNull(studentProfile, "Student profile should not be null");
+            Assert.assertFalse(user.optBoolean("deleted"), "User should not be marked as deleted");
+            Assert.assertFalse(studentProfile.optBoolean("deleted"), "Student profile should not be marked as deleted");
+
         } else {
             throw new RuntimeException("❌ OTP verification failed with status: " + otpVerifyResponse.getStatusCode());
         }
     }
+
 }
