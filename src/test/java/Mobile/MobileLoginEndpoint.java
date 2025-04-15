@@ -21,17 +21,17 @@ public class MobileLoginEndpoint {
 
     }
 
-    public static Response verifyMagicLinkEndpointMobile(String magicLinkToken){
+    public static Response verifyOTPMobileEndpoint(String otp){
 
         JSONObject requestBody = new JSONObject();
-        requestBody.put("token", magicLinkToken);
+        requestBody.put("otp", otp);
 
         Response response = given()
                 .contentType("application/json")
                 .header("x-client-type","mobile")
                 .body(requestBody.toString())
                 .when()
-                .post(Routes.verifyMagicLink);
+                .post(Routes.verifyOTP);
         return response;
 
 

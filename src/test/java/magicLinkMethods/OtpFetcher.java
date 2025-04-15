@@ -39,13 +39,8 @@ public class OtpFetcher {
         for (int attempt = 1; attempt <= retries; attempt++) {
             System.out.println("⏳ Attempt " + attempt + " at: " + new Date());
 
-            SearchTerm searchTerm = new AndTerm(
-                    new SubjectTerm("Your OTP Code"),  // 🔧 Customize this subject as needed
-                    new SentDateTerm(ComparisonTerm.GT, new Date(earliestAcceptableTime - 30000))
-            );
-
+            SearchTerm searchTerm = new SubjectTerm("OTP Verification");
             Message[] messages = inbox.search(searchTerm);
-            System.out.println("📬 Found " + messages.length + " matching OTP emails");
 
             // Sort newest first
             Arrays.sort(messages, (m1, m2) -> {
@@ -57,13 +52,18 @@ public class OtpFetcher {
             });
 
             for (Message message : messages) {
+                Date receivedDate = message.getReceivedDate();
+
+                // ✅ Ignore emails received before the request time
+                if (receivedDate == null || receivedDate.getTime() < earliestAcceptableTime) {
+                    continue;
+                }
+
                 System.out.println("✅ Checking email: " + message.getSubject());
                 String content = getTextFromMessage(message);
 
-                // 🔍 Find 6-digit OTP in email body
-                Pattern otpPattern = Pattern.compile("\\b\\d{6}\\b");
-                Matcher matcher = otpPattern.matcher(content);
 
+                Matcher matcher = Pattern.compile("\\b\\d{6}\\b").matcher(content);
                 if (matcher.find()) {
                     otpCode = matcher.group();
                     System.out.println("🔐 OTP Found: " + otpCode);
@@ -71,6 +71,7 @@ public class OtpFetcher {
                 } else {
                     System.out.println("⚠️ No OTP found in this email.");
                 }
+
             }
 
             if (otpCode != null) break;

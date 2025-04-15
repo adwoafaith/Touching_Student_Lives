@@ -67,6 +67,8 @@ public class Routes {
     public static String getAllRaffle = base_url+"/v1/raffle";
     public static String getAllRaffleWinners = base_url+"/v1/raffle/winners/";
 
+    //mobile
+    public static String verifyOTP = base_url+"/v1/auth/verify-otp";
 
 
 
