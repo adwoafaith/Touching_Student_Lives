@@ -9,7 +9,6 @@ import endpoints.QuestionsEndpoint;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,10 +19,9 @@ import java.util.Map;
 
 public class QuestionsTest {
     public static String questionCreationId; //store question id in this variable
-    public static String questionBankId;
 
 
-    @Test(priority = 1,dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
+    @Test(priority = 1,dependsOnMethods = "test.QuestionBankTest.createQuestionBankTest",dataProvider = "createQuestionData", dataProviderClass = QuestionsDataProvider.class)
     public void QuestionTest(CreateQuestionPayload questions) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String questionJson = objectMapper.writeValueAsString(questions); // Convert to JSON string
@@ -46,7 +44,7 @@ public class QuestionsTest {
 
     }
 
-    @Test(priority = 2, dependsOnMethods = "createQuestionBankTest")
+    @Test(priority = 2, dependsOnMethods = "test.QuestionBankTest.createQuestionBankTest")
     public void GetAllQuestionsTest()  {
         Response response = QuestionsEndpoint.GetAllQuestionsEndpoint(); // Send API request
         response.then().log().body(); //print response

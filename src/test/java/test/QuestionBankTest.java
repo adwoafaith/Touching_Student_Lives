@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class QuestionBankTest {
     public static String questionBankId;
+    public static boolean isDeleted = false;
 
     @Test(priority = 1, dataProvider = "createQuestionBank",dataProviderClass = QuestionBankDataProvider.class)
     public void createQuestionBankTest(Map<String, String> formData, String filePath){
@@ -55,10 +56,11 @@ public class QuestionBankTest {
 
 //    @Test(priority = 5)
 //    public void deleteQuestionBankTest() {
-//        if (questionBankId == null) {
-//            throw new IllegalArgumentException("questionBankId is null - nothing to delete");
+//        if (questionBankId == null || isDeleted) {
+//            System.out.println("Skipping deletion - already deleted or no ID");
+//            return;
 //        }
-//        Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
+//            Response response = QuestionBankEndpoint.deleteQuestionBank(questionBankId);
 //        response.prettyPrint();
 //        Assert.assertEquals(response.jsonPath().getString("message"),
 //                "Question bank deleted successfully",

@@ -8,11 +8,12 @@
             <class name="test.LeaderboardTest"/>
             <class name="test.QuestionBankTest"/>
             <class name="test.QuestionsTest"/>
+            <class name ="test.TestCleanUp"/>
             <class name="test.QuizTest"/>
-            <class name="test.QuestionsTest"/>
             <class name="test.GeneralPostTest"/>
             <class name="test.ClubTest"/>
             <class name="test.OpportunityTest"/>
+
 
         </classes>
     </test>
