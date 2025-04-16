@@ -13,6 +13,7 @@ public class Routes {
 
     //Waitlist
     public static String getWaitList = base_url_dev+"/v1/auth/waiting";
+    public static String approveWaitList = base_url_dev +"/v1/auth/{wait_list_id}/approve";
 
     //clubendpoint
 
