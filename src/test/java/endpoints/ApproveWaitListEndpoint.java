@@ -14,9 +14,10 @@ public class ApproveWaitListEndpoint {
                 .header("Authorization", "Bearer " + authToken)
                 .header("Connection","keep-alive")
                 .header("x-client-type","web")
-                .pathParams("{wait_list_id}",waitListId)
+                .pathParams("wait_list_id",waitListId)
                 .when()
                 .patch(Routes.approveWaitList);
         return response;
+
     }
 }

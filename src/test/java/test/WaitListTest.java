@@ -16,6 +16,7 @@ public class WaitListTest {
 
     public static String email;
     public static String authToken;
+    public static String waitListId;
 
     private void loadConfig() {
         Properties properties = new Properties();
@@ -45,7 +46,7 @@ public class WaitListTest {
             if (dataEmail.equalsIgnoreCase(email)) {
                 isEmailFound = true;
 
-                String id = (String) user.get("id");
+                waitListId = (String) user.get("id");
                 String role = (String) user.get("role");
                 String state = (String) user.get("state");
                 Boolean deleted = (Boolean) user.get("deleted");
@@ -57,6 +58,7 @@ public class WaitListTest {
                 //System.out.println("🆔 ID: " + id);
 
                 // Assertions
+                Assert.assertNotNull(waitListId,"Id is null");
                 Assert.assertEquals(state, "pending", "State is not pending");
                 Assert.assertEquals(role, "student", "Role is not student");
                 Assert.assertFalse(deleted, "User should not be marked as deleted");
