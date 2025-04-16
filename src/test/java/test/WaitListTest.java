@@ -36,6 +36,7 @@ public class WaitListTest {
     @Test(priority = 1)
     public void getWaitListTest() {
         Response response = WaitListEndpoint.getWaitList();
+        response.then().log().body();
 
         List<Map<String, Object>> users = response.jsonPath().getList("data");
         boolean isEmailFound = false;
