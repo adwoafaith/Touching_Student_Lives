@@ -33,4 +33,29 @@ public class ClubEndpoint {
 
     }
 
+
+    public static Response getSingleClub(String clubId){
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection","keep-alive")
+                .header("x-client-type","web")
+                .pathParams("club_id",clubId)
+                .when()
+                .get(Routes.getClub);
+        return response;
+    }
+
+    public static Response deleteClub(String clubId){
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection","keep-alive")
+                .header("x-client-type","web")
+                .pathParams("club_id",clubId)
+                .when()
+                .delete(Routes.deleteClub);
+        return response;
+
+    }
 }

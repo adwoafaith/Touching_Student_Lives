@@ -1,8 +1,24 @@
 <suite name="API Test Suite">
     <test name="Login and Club Tests">
         <classes>
+<!--                <class name="MobileTest.MobileLoginTestNewUsers"/>-->
+<!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
             <class name="test.LoginTest"/>
-            <class name="test.ClubTest"/>
+            <class name="test.WaitListTest" />
+            <class name="test.ApproveWaitListTest"/>
+<!--            <class name="test.EventsTest"/>-->
+<!--&lt;!&ndash;       <class name="test.RaffleTest"/>&ndash;&gt;-->
+<!--            <class name="test.GetInstitutionsTest"/>-->
+<!--            <class name="test.LeaderboardTest"/>-->
+<!--            <class name="test.QuestionBankTest"/>-->
+<!--            <class name="test.QuestionsTest"/>-->
+<!--            <class name ="test.TestCleanUp"/>-->
+<!--            <class name="test.QuizTest"/>-->
+<!--            <class name="test.GeneralPostTest"/>-->
+<!--            <class name="test.ClubTest"/>-->
+<!--            <class name="test.OpportunityTest"/>-->
+
+
         </classes>
     </test>
 </suite>

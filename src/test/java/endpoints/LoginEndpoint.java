@@ -14,7 +14,7 @@ public class LoginEndpoint {
                     .header("x-client-type","web")
                     .body(payload)
                 .when()
-                .post(Routes.login);
+                .post(Routes.loginDev);
 
         return response;
 
@@ -35,4 +35,5 @@ public class LoginEndpoint {
 
 
     }
+
 }
