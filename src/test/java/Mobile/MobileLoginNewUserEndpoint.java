@@ -14,7 +14,7 @@ public class MobileLoginNewUserEndpoint {
                 .header("x-client-type","mobile")
                 .body(payload)
                 .when()
-                .post(Routes.loginDev);
+                .post(Routes.login);
 
         return response;
 

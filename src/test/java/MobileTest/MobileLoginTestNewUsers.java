@@ -1,24 +1,20 @@
 package MobileTest;
 
-import Mobile.MobileLoginEndpoint;
+
 import Mobile.MobileLoginNewUserEndpoint;
 import Payload.LoginPayload;
 import io.restassured.response.Response;
-import magicLinkMethods.OtpFetcher;
-import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
 public class MobileLoginTestNewUsers {
     public static String email;
-    private static String appPassword;
-    public static String authToken;
+    public static String appPassword;
 
     LoginPayload loginPayload = new LoginPayload();
 
@@ -34,6 +30,7 @@ public class MobileLoginTestNewUsers {
             properties.load(fis);
             email = properties.getProperty("mobileEmailNew_user");
             appPassword = properties.getProperty("newUser_app_password");
+
         } catch (IOException e) {
             throw new RuntimeException("Failed to load config file: " + e.getMessage());
         }
@@ -41,8 +38,10 @@ public class MobileLoginTestNewUsers {
 
     @Test(priority = 1)
     public void LoginNewUser() {
-
+        System.out.println(email);
         Response response = MobileLoginNewUserEndpoint.mobileLoginNewUser(loginPayload);
+        System.out.println(loginPayload.getEmail());
+        response.then().log().all();
 
         //Assertions
         String message = response.jsonPath().getString("message");

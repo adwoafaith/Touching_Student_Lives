@@ -1,7 +1,7 @@
 <suite name="API Test Suite">
     <test name="Login and Club Tests">
         <classes>
-<!--                <class name="MobileTest.MobileLoginTestNewUsers"/>-->
+<!--                <class name="SuperAdmin.SuperAdminLogin"/>-->
 
             <class name="test.LoginTest"/>
             <class name="MobileTest.MobileLoginTestNewUsers"/>
