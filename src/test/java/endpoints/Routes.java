@@ -2,8 +2,12 @@ package endpoints;
 
 public class Routes {
     public static String base_url = "https://api-tslp-staging.amalitech-dev.net/api";
+    public static String base_url_dev = "https://api-tslp.amalitech-dev.net/api";
 
-    //login
+
+    //login dev
+    public static String loginDev = base_url_dev+"/v1/auth/login";
+    //login staging
     public static String login = base_url+"/v1/auth/login";
     public static String verifyMagicLink = base_url+"/v1/auth/verify-magic-link";
 

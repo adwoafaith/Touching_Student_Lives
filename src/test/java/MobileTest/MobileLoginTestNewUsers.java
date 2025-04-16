@@ -1,6 +1,7 @@
 package MobileTest;
 
 import Mobile.MobileLoginEndpoint;
+import Mobile.MobileLoginNewUserEndpoint;
 import Payload.LoginPayload;
 import io.restassured.response.Response;
 import magicLinkMethods.OtpFetcher;
@@ -31,77 +32,32 @@ public class MobileLoginTestNewUsers {
         Properties properties = new Properties();
         try (FileInputStream fis = new FileInputStream("config.properties")) {
             properties.load(fis);
-            email = properties.getProperty("mobileEmail");
-            appPassword = properties.getProperty("mobile_app_password");
+            email = properties.getProperty("mobileEmailNew_user");
+            appPassword = properties.getProperty("newUser_app_password");
         } catch (IOException e) {
             throw new RuntimeException("Failed to load config file: " + e.getMessage());
         }
     }
 
     @Test(priority = 1)
-    public void loginWithOtpVerificationMobile() {
-        // ⏰ Record time before login
-        long requestStartTime = System.currentTimeMillis();
+    public void LoginNewUser() {
 
-        // 📨 Step 1: Trigger OTP email
-        System.out.println("📲 Sending mobile login request at: " + new Date(requestStartTime));
-        Response loginResponse = MobileLoginEndpoint.mobileLogin(loginPayload);
+        Response response = MobileLoginNewUserEndpoint.mobileLoginNewUser(loginPayload);
 
-        if (loginResponse.getStatusCode() != 201) {
-            throw new RuntimeException("❌ Login request failed with status: " + loginResponse.getStatusCode());
-        }
+        //Assertions
+        String message = response.jsonPath().getString("message");
+        String statusCode = response.jsonPath().getString("statusCode");
 
-        // 🧠 Step 2: Fetch OTP
-        String otpCode = null;
-        int maxRetries = 8;
-        int retryDelay = 5000;
+        // Check that message is one of the expected outcomes
+        boolean isExpectedMessage = message.equalsIgnoreCase("Joined waiting list Successful") || message.equalsIgnoreCase("Already on waiting list");
 
-        for (int attempt = 1; attempt <= maxRetries; attempt++) {
-            try {
-                System.out.println("🔍 Attempting to fetch OTP, try #" + attempt + "...");
-                otpCode = OtpFetcher.fetchOtpFromEmail(email, appPassword, requestStartTime);
 
-                if (otpCode != null) {
-                    break;
-                }
+        Assert.assertTrue(isExpectedMessage,
+                "Unexpected message received: " + message + ". Expected 'Joined waiting list Successful' or 'You are already on the wait list'");
+        Assert.assertEquals(statusCode,"200","Staus code mismatch");
 
-                Thread.sleep(retryDelay);
-            } catch (Exception e) {
-                System.out.println("❌ Error while fetching OTP: " + e.getMessage());
-            }
-        }
 
-        if (otpCode == null) {
-            throw new RuntimeException("❌ Failed to retrieve OTP after " + maxRetries + " attempts.");
-        }
 
-        // 🚀 Step 3: Submit OTP verification (assuming a separate verifyOtp method handles this)
-        Response otpVerifyResponse = MobileLoginEndpoint.verifyOTPMobileEndpoint(otpCode);
 
-        if (otpVerifyResponse.getStatusCode() == 201) {
-//            authToken = otpVerifyResponse.jsonPath().getString("accessToken");
-            System.out.println(authToken);
-            System.out.println("✅ Mobile OTP verification successful!");
-
-            //perform assertions
-            JSONObject jsonObject = new JSONObject(otpVerifyResponse.getBody().asString());
-
-            String accessToken = jsonObject.optString("accessToken");
-            JSONObject user = jsonObject.getJSONObject("user");
-            String emailReturned = user.optString("email");
-            JSONObject studentProfile = user.optJSONObject("student_profile");
-
-            Assert.assertNotNull(accessToken, "Access token should not be null");
-            Assert.assertFalse(accessToken.isEmpty(), "Access token should not be empty");
-            Assert.assertNotNull(user, "User object should not be null");
-            Assert.assertEquals(emailReturned, email, "Returned email should match login email");
-            Assert.assertNotNull(studentProfile, "Student profile should not be null");
-            Assert.assertFalse(user.optBoolean("deleted"), "User should not be marked as deleted");
-            Assert.assertFalse(studentProfile.optBoolean("deleted"), "Student profile should not be marked as deleted");
-
-        } else {
-            throw new RuntimeException("❌ OTP verification failed with status: " + otpVerifyResponse.getStatusCode());
-        }
     }
-
 }
