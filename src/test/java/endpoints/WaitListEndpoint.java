@@ -8,11 +8,10 @@ import static io.restassured.RestAssured.given;
 import static test.LoginTest.authToken;
 
 public class WaitListEndpoint {
-    public static Response getWaitListEndpoint() {
+    public static Response getWaitList() {
         RequestSpecification request = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken)
-                .queryParam("status", "expired")
                 .header("Connection", "keep-alive")
                 .header("x-client-type", "web");
 
