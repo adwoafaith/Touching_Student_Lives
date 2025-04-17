@@ -2,6 +2,7 @@
     <test name="Login and Club Tests">
         <classes>
                 <class name="SuperAdmin.SuperAdminLogin"/>
+                <class name="Organizations.OrganizationsTest"/>
 
 <!--            <class name="test.LoginTest"/>-->
 <!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
