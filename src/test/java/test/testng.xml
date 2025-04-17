@@ -1,12 +1,12 @@
 <suite name="API Test Suite">
     <test name="Login and Club Tests">
         <classes>
-<!--                <class name="SuperAdmin.SuperAdminLogin"/>-->
+                <class name="SuperAdmin.SuperAdminLogin"/>
 
-            <class name="test.LoginTest"/>
-            <class name="MobileTest.MobileLoginTestNewUsers"/>
-            <class name="test.WaitListTest" />
-            <class name="test.ApproveWaitListTest"/>
+<!--            <class name="test.LoginTest"/>-->
+<!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
+<!--            <class name="test.WaitListTest" />-->
+<!--            <class name="test.ApproveWaitListTest"/>-->
 <!--            <class name="test.EventsTest"/>-->
 <!--&lt;!&ndash;       <class name="test.RaffleTest"/>&ndash;&gt;-->
 <!--            <class name="test.GetInstitutionsTest"/>-->

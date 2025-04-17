@@ -84,7 +84,7 @@ public class MagicLinkmethod {
 
 
                 if (magicLink != null) {
-                    System.out.println("🔗 Found valid magic link: " + magicLink);
+                    System.out.println("Found valid magic link: ");
                     break;
                 } else {
                     System.out.println("⚠️ Magic link not found in this email, checking next...");
@@ -110,7 +110,7 @@ public class MagicLinkmethod {
             throw new Exception("❌ Token could not be extracted from the magic link.");
         }
 
-        System.out.println("🔐 Extracted Token: " + token);
+        System.out.println("🔐 Token Extracted ");
         return token;
     }
 

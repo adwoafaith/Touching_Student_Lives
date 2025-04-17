@@ -4,6 +4,7 @@ import Payload.LoginPayload;
 import endpoints.LoginEndpoint;
 import io.restassured.response.Response;
 import magicLinkMethods.MagicLinkmethod;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -63,6 +64,15 @@ public class SuperAdminLogin {
                     if (verifyResponse.getStatusCode() == 201) {
                         authToken = verifyResponse.jsonPath().getString("accessToken");
                         System.out.println("✅ Verification successful!");
+
+                        String role = verifyResponse.jsonPath().getString("user.role");
+                        String status = verifyResponse.jsonPath().getString("user.state");
+                        String super_Admin_email = verifyResponse.jsonPath().getString("user.email");
+
+                        Assert.assertEquals(super_Admin_email,email,"email does not match");
+                        Assert.assertNotNull(authToken,"Token is null");
+                        Assert.assertEquals(status,"active","User is not active");
+                        Assert.assertEquals(role,"super_admin","User is not a user admin");
                         return; // Exit on success
                     } else {
                         System.out.println("⚠️ Verification failed, retrying...");
@@ -75,7 +85,6 @@ public class SuperAdminLogin {
                 System.out.println("❌ Error: " + e.getMessage());
             }
         }
-
         throw new RuntimeException("❌ Failed to complete magic link verification");
 
     }
