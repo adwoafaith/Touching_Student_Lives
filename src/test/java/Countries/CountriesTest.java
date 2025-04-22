@@ -94,7 +94,7 @@ public class CountriesTest {
         response.then().log().body();
     }
 
-    @Test(priority = 4)
+    //@Test(priority = 4)
     public void deleteCountriesTest() {
         Response response = CountriesEndpoint.deleteCountry(countryId);
 

@@ -92,6 +92,13 @@ public class Routes {
     public static String deleteCountry = base_url+"/country/{country_id}";
     public static String getSingleCountry = base_url +"/country/{country_id}";
 
+    //Institutions
+    public static String getAllInstitutions = base_url +"/institution";
+    public static String createInstitution = base_url +"/institution";
+    public static String deleteInstitution = base_url + "/institution/{institution_id}";
+    public static String updateInstitution = base_url + "/institution/{institution_id}";
+    public static String getSingleInstitution = base_url + "/institution/{institution_id}";
+
 
 
 
