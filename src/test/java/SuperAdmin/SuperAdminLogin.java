@@ -68,6 +68,8 @@ public class SuperAdminLogin {
                         String role = verifyResponse.jsonPath().getString("user.role");
                         String status = verifyResponse.jsonPath().getString("user.state");
                         String super_Admin_email = verifyResponse.jsonPath().getString("user.email");
+                        System.out.println(role);
+                        System.out.println(authToken);
 
                         Assert.assertEquals(super_Admin_email,email,"email does not match");
                         Assert.assertNotNull(authToken,"Token is null");

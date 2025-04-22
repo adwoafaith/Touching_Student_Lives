@@ -82,6 +82,8 @@ public class Routes {
 
     //Organizations
     public static String getAllOrganizations = base_url+"/organisation";
+    public static String createOrganizations = base_url+"/organisation";
+    public static String updateOrganizations = base_url+"/organisation/{organization_id}";
 
 
 
