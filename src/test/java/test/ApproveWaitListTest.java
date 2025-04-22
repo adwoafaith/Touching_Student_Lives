@@ -1,9 +1,6 @@
 package test;
 
 import endpoints.ApproveWaitListEndpoint;
-import endpoints.ClubEndpoint;
-import endpoints.WaitListEndpoint;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
