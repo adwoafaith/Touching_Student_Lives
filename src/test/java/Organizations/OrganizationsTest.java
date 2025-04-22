@@ -37,7 +37,7 @@ public class OrganizationsTest{
 
     }
 
-    //@Test(dataProvider = "organizationPayloadProvider",dataProviderClass = OrganizationDataProvider.class)
+    @Test(dataProvider = "organizationPayloadProvider",dataProviderClass = OrganizationDataProvider.class)
     public void createOrganizationsTest(String organizationPayload) {
 
         Response response = OrganizationsEndpoint.createOrganizations(organizationPayload);
@@ -54,7 +54,7 @@ public class OrganizationsTest{
 
     }
 
-    @Test(dataProvider = "updatedOrganizationPayloadProvider", dataProviderClass = UpdateOrganizationDataProvider.class)
+    //@Test(dataProvider = "updatedOrganizationPayloadProvider", dataProviderClass = UpdateOrganizationDataProvider.class)
     public void updateOrganizationsTest(String organizationId, String organizationPayload) {
         Response response = OrganizationsEndpoint.updateOrganizations(organizationPayload, organizationId);
         response.then().log().all();

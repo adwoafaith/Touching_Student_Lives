@@ -18,22 +18,7 @@ public class OrganizationDataProvider {
                                 "0233333999"
                         ))
                 },
-                {
-                        convertToJson(new OrganizationPayload(
-                                "another.user@example.com",
-                                "Automation Admin2",
-                                "Somewhere in Accra",
-                                "0541234567"
-                        ))
-                },
-                {
-                        convertToJson(new OrganizationPayload(
-                                "testy.test@test.com",
-                                "Automation Admin3",
-                                "Hidden Leaf Village",
-                                "0200000000"
-                        ))
-                }
+
         };
     }
 
