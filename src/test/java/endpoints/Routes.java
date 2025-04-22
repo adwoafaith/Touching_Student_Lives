@@ -88,9 +88,9 @@ public class Routes {
 
     // Countries
     public static String getAllCountries = base_url + "/country";
-    public static String createCountry = base_url + "country";
-    public static String deleteCountry = base_url+"country/{country_id}";
-    public static String getSingleCountry = base_url +"country/{country_id}";
+    public static String createCountry = base_url + "/country";
+    public static String deleteCountry = base_url+"/country/{country_id}";
+    public static String getSingleCountry = base_url +"/country/{country_id}";
 
 
 

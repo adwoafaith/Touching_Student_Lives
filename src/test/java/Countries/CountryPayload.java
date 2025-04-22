@@ -1,11 +1,11 @@
 package Countries;
 
-public class CountriesPayload {
+public class CountryPayload {
     public String getName() {
         return name;
     }
 
-    public CountriesPayload(String name, String code) {
+    public CountryPayload(String name, String code) {
         this.name = name;
         this.code = code;
     }
