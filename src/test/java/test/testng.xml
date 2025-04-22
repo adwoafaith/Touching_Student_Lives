@@ -4,6 +4,8 @@
             <class name="SuperAdmin.SuperAdminLogin"/>
             <class name="Countries.CountriesTest"/>
             <class name="Institution.InstitutionsTest"/>
+            <class name="Institution.CountryCleanUP"/>
+
 
 <!--                <class name="Organizations.OrganizationsTest"/>-->
 
