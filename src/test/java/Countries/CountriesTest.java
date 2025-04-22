@@ -7,7 +7,7 @@ public class CountriesTest {
     public static String countryId;
     public static String countryCode;
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void getAllCountriesTest() {
         Response response = CountriesEndpoint.getAllCountries();
         response.then().log().body();
@@ -93,6 +93,45 @@ public class CountriesTest {
 
         response.then().log().body();
     }
+
+    @Test(priority = 4)
+    public void deleteCountriesTest() {
+        Response response = CountriesEndpoint.deleteCountry(countryId);
+
+        int statusCode = response.getStatusCode();
+
+        if(statusCode == 200){
+
+            Assert.assertEquals(response.statusCode(),200,"User deleted successfully");
+
+        }
+
+        else if (statusCode == 404){
+
+            String message = response.jsonPath().getString("message");
+            String error = response.jsonPath().getString("error");
+            response.then().log().body();
+
+            Assert.assertEquals(message,"Country not found","Something went wrong");
+            Assert.assertEquals(error,"Not Found","Something went wrong");
+        }
+
+        else if (statusCode == 400){
+
+            String message = response.jsonPath().getString("message");
+            String error = response.jsonPath().getString("error");
+            response.then().log().body();
+
+            Assert.assertEquals(message,"Validation failed (uuid is expected)","Something went wrong");
+            Assert.assertEquals(error,"Bad Request","Something went wrong");
+        }
+        else {
+            Assert.fail("Something unexpected happened "+ statusCode);
+        }
+
+        response.then().log().body();
+    }
+
 
 
 }
