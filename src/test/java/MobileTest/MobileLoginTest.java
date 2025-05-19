@@ -19,6 +19,7 @@ public class MobileLoginTest {
     public static String email;
     private static String appPassword;
     public static String authToken;
+    public static String emailReturned;
 
     LoginPayload loginPayload = new LoginPayload();
 
@@ -89,7 +90,7 @@ public class MobileLoginTest {
 
             String accessToken = jsonObject.optString("accessToken");
             JSONObject user = jsonObject.getJSONObject("user");
-            String emailReturned = user.optString("email");
+            emailReturned = user.optString("email");
             JSONObject studentProfile = user.optJSONObject("student_profile");
 
             Assert.assertNotNull(accessToken, "Access token should not be null");

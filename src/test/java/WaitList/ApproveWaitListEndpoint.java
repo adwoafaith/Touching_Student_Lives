@@ -9,7 +9,7 @@ import static WebAdminLoginTest.LoginTest.authToken;
 
 public class ApproveWaitListEndpoint {
 
-    public static Response approveWaitList(){
+    public static Response approveWaitList(WaitListPayload payload){
         Response response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken)
