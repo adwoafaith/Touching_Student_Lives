@@ -1,8 +1,7 @@
 package MobileTest;
 
 
-import Mobile.MobileLoginNewUserEndpoint;
-import Payload.LoginPayload;
+import WebAdminLoginTest.LoginPayload;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

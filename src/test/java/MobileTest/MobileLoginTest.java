@@ -1,8 +1,7 @@
 package MobileTest;
 
 
-import Payload.LoginPayload;
-import Mobile.MobileLoginEndpoint;
+import WebAdminLoginTest.LoginPayload;
 import io.restassured.response.Response;
 
 import magicLinkMethods.OtpFetcher;

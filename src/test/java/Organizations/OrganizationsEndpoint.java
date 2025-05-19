@@ -1,10 +1,10 @@
 package Organizations;
 
-import endpoints.Routes;
+import Routes.Routes;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-import static SuperAdmin.SuperAdminLogin.authToken;
+import static SuperAdminLogin.SuperAdminLogin.authToken;
 import static io.restassured.RestAssured.given;
 
 

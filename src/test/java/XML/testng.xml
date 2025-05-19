@@ -1,0 +1,31 @@
+<suite name="API Test Suite">
+    <test name="Login and Club Tests">
+        <classes>
+<!--            <class name="SuperAdminLogin.SuperAdminLogin"/>-->
+<!--            <class name="Countries.CountriesTest"/>-->
+<!--            <class name="Institution.InstitutionsTest"/>-->
+<!--            <class name="Institution.CountryCleanUP"/>-->
+
+
+<!--                <class name="Organizations.OrganizationsTest"/>-->
+
+            <class name="WebAdminLoginTest.LoginTest"/>
+<!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
+<!--            <class name="WaitList.WaitListTest" />-->
+<!--            <class name="WaitList.ApproveWaitListTest"/>-->
+<!--            <class name="Events.EventsTest"/>-->
+<!--&lt;!&ndash;            <class name="Raffle.RaffleTest"/>&ndash;&gt;-->
+<!--            <class name="GeneralPost.GetInstitutionsTest"/>-->
+<!--            <class name="Leaderboard.LeaderboardTest"/>-->
+<!--            <class name="QuestionBank.QuestionBankTest"/>-->
+<!--            <class name="Questions.QuestionsTest"/>-->
+<!--            <class name ="CleanUpTest.TestCleanUp"/>-->
+<!--            <class name="Quiz.QuizTest"/>-->
+<!--            <class name="GeneralPost.GeneralPostTest"/>-->
+<!--            <class name="Clubs.ClubTest"/>-->
+<!--            <class name="Opportunity.OpportunityTest"/>-->
+
+
+        </classes>
+    </test>
+</suite>
