@@ -19,13 +19,30 @@ public class ScheduleNotificationEndpoint {
         return request.when().get(Routes.getAllScheduledNotification);
     }
 
-    public static Response scheduleNotificationEndpoint() {
+    public static Response scheduleNotification(Object payload) {
         RequestSpecification request = given()
                 .header("Authorization", "Bearer " + authToken)
                 .header("Connection", "keep-alive")
                 .header("x-client-type", "web")
+                .contentType(ContentType.JSON)
+                .body(payload);
+
+
+        return request.when().post(Routes.scheduleNotification);
+    }
+
+
+    public static Response cancleNotification(String cancelNotification) {
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .pathParam("cancel_notification",cancelNotification)
                 .contentType(ContentType.JSON);
 
-        return request.when().get(Routes.scheduleNotification);
+
+
+        return request.when().delete(Routes.deleteScheduledNotification);
     }
+
 }

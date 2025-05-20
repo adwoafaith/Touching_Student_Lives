@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class NotificationTypeTest {
 
-    public static String announcementId;
+    public static String notificationTypeId;
     public static String announcementName;
 
 
@@ -28,14 +28,14 @@ public class NotificationTypeTest {
         for (int i = 0; i < totalCount; i++) {
             String code = json.getString("data[" + i + "].code");
             if ("announcement".equals(code)) {
-                announcementId = json.getString("data[" + i + "].id");
+                notificationTypeId= json.getString("data[" + i + "].id");
                 announcementName = json.getString("data[" + i + "].name");
                 break;
             }
 
 
         }
-        Assert.assertNotNull(announcementId, "Announcement ID should not be null");
+        Assert.assertNotNull(notificationTypeId, "Announcement ID should not be null");
         Assert.assertNotNull(announcementName, "Announcement name should not be null");
     }
 }
