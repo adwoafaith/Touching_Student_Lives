@@ -18,4 +18,14 @@ public class ScheduleNotificationEndpoint {
 
         return request.when().get(Routes.getAllScheduledNotification);
     }
+
+    public static Response scheduleNotificationEndpoint() {
+        RequestSpecification request = given()
+                .header("Authorization", "Bearer " + authToken)
+                .header("Connection", "keep-alive")
+                .header("x-client-type", "web")
+                .contentType(ContentType.JSON);
+
+        return request.when().get(Routes.scheduleNotification);
+    }
 }

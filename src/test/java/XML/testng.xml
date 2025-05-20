@@ -10,7 +10,9 @@
 <!--                <class name="Organizations.OrganizationsTest"/>-->
 
             <class name="WebAdminLoginTest.LoginTest"/>
-            <class name="NotificationTemplate.NotificationTemplateTest"/>
+            <class name="NotificationType.NotificationTypeTest"/>
+<!--            <class name="NotificationTemplate.NotificationTemplateTest"/>-->
+<!--            <class name="ScheduleNotification.ScheduleNotificationTest"/>-->
 
 <!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
 <!--            <class name="WaitList.WaitListTest" />-->

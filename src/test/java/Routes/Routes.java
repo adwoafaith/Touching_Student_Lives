@@ -107,8 +107,11 @@ public class Routes {
     public static String createNotificationTemplate = base_url + "/notifications/templates";
 
     // Schedule Notification
-    public static String getAllScheduledNotification = base_url + "/notifications/templates";
+    public static String getAllScheduledNotification = base_url + "/notifications/scheduled";
     public static String scheduleNotification = base_url + "/notifications/scheduled";
+
+    //notificationType
+    public static String getNotificationtype = base_url + "/notifications/Types";
 
 
 
