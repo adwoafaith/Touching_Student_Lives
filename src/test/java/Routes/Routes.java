@@ -100,6 +100,13 @@ public class Routes {
     public static String getSingleInstitution = base_url + "/institution/{institution_id}";
 
 
+    //Notifications
+
+    //Notification Template
+    public static String getAllNotificationTemplate = base_url + "/notifications/templates";
+    public static String createNotificationTemplate = base_url + "/notifications/templates";
+
+
 
 
 

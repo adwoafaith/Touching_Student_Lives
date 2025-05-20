@@ -10,10 +10,12 @@
 <!--                <class name="Organizations.OrganizationsTest"/>-->
 
             <class name="WebAdminLoginTest.LoginTest"/>
-            <class name="MobileTest.MobileLoginTestNewUsers"/>
-            <class name="WaitList.WaitListTest" />
-            <class name="WaitList.ApproveWaitListTest"/>
-            <class name="Events.EventsTest"/>
+            <class name="NotificationTemplate.NotificationTemplateTest"/>
+
+<!--            <class name="MobileTest.MobileLoginTestNewUsers"/>-->
+<!--            <class name="WaitList.WaitListTest" />-->
+<!--            <class name="WaitList.ApproveWaitListTest"/>-->
+<!--            <class name="Events.EventsTest"/>-->
 <!--&lt;!&ndash;            <class name="Raffle.RaffleTest"/>&ndash;&gt;-->
 <!--            <class name="GeneralPost.GetInstitutionsTest"/>-->
 <!--            <class name="Leaderboard.LeaderboardTest"/>-->
