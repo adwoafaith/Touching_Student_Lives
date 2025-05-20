@@ -114,6 +114,9 @@ public class Routes {
     //notificationType
     public static String getNotificationtype = base_url + "/notifications/Types";
 
+    //notification history
+    public static String getNoficationHistory = base_url + "/notifications/preferences";
+
 
 
 
