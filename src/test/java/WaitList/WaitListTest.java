@@ -29,8 +29,15 @@ public class WaitListTest {
 
     @BeforeClass
     public void setUpData() {
-        loadConfig();
+        try {
+            loadConfig();
+        } catch (Exception e) {
+            System.err.println("Setup failed in WaitListTest: " + e.getMessage());
+            e.printStackTrace(); // This shows the full stack trace in your console
+            throw new RuntimeException("Setup failed: " + e.getMessage());
+        }
     }
+
 
     @Test(priority = 1)
     public void getWaitListTest() {
@@ -52,10 +59,6 @@ public class WaitListTest {
                 Boolean deleted = (Boolean) user.get("deleted");
                 Object deletedAt = user.get("deleted_at");
                 Object profilePicUrl = user.get("profile_pic_url");
-
-
-                //System.out.println("🎯 Found user: " + dataEmail);
-                //System.out.println("🆔 ID: " + id);
 
                 // Assertions
                 Assert.assertNotNull(waitListId,"Id is null");
