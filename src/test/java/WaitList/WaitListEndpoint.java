@@ -14,6 +14,7 @@ public class WaitListEndpoint {
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken)
                 .header("Connection", "keep-alive")
+                .queryParam("limit",100)
                 .header("x-client-type", "web");
 
         Response response = request.when().get(Routes.getWaitList);

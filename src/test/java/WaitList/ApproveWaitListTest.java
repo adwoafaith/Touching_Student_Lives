@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class ApproveWaitListTest {
 
@@ -15,10 +16,19 @@ public class ApproveWaitListTest {
         Response response = ApproveWaitListEndpoint.approveWaitList(payload);
         response.then().log().body();
 
-        String message = response.jsonPath().getString("message");
+        int total = response.jsonPath().getInt("total");
+        int statusCode = response.jsonPath().getInt("statusCode");
+        List<Map<String, Object>> data = response.jsonPath().getList("data");
 
-        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200 not received");
-        Assert.assertEquals(message, "User approved successfully", "Message does not match, please try again later");
+        // Assertions
+        Assert.assertEquals(response.getStatusCode(), 200, "HTTP status code is not 200");
+        Assert.assertEquals(statusCode, 200, "Response 'statusCode' field is not 200");
+        Assert.assertEquals(total, userIds.size(), "'total' field doesn't match submitted user count");
+
+        for (Map<String, Object> user : data) {
+            String state = (String) user.get("state");
+            Assert.assertEquals(state, "inactive", "User state should be 'inactive'");
+        }
     }
 
 }
