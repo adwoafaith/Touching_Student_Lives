@@ -15,10 +15,11 @@ public class OrganizationsTest{
     public static String organizationId;
     public static String organizationName;
     public static String organizationEmail;
-    // Static list to store the created organizations
+
+
     public static List<OrganizationPayload> createdOrganizations = new ArrayList<>();
 
-    //@Test
+    @Test(priority = 1)
     public void getAllOrganizationsTest() {
         Response response = OrganizationsEndpoint.getOrganizations();
 
@@ -37,18 +38,16 @@ public class OrganizationsTest{
 
     }
 
-    @Test(dataProvider = "organizationPayloadProvider",dataProviderClass = OrganizationDataProvider.class)
+    @Test(priority = 2, dataProvider = "organizationPayloadProvider",dataProviderClass = OrganizationDataProvider.class)
     public void createOrganizationsTest(String organizationPayload) {
 
         Response response = OrganizationsEndpoint.createOrganizations(organizationPayload);
-        response.then().log().all();
+        response.then().log().body();
         Assert.assertEquals(response.statusCode(),201);
 
         organizationEmail = response.jsonPath().getString("email");
-        organizationId =  response.jsonPath().getString("user_id");
+        organizationId =  response.jsonPath().getString("id");
 
-        System.out.println("Created Organization ID: " + organizationId);
-        System.out.println("Created Organization Email: " + organizationEmail);
 
 
 
@@ -66,5 +65,34 @@ public class OrganizationsTest{
         System.out.println("✅ Updated Organization ID: " + updatedId);
         System.out.println("📬 Updated Organization Email: " + updatedEmail);
     }
+
+    @Test(priority = 3)
+    public void deleteOrganizationsTest() {
+        Response response = OrganizationsEndpoint.deleteOrganizations(organizationId);
+        response.then().log().body();
+
+        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 201 but got something else");
+        String message = response.jsonPath().getString("message");
+        Assert.assertTrue(message.contains(organizationId), " Message does not contain the expected organization ID");
+
+        // Extract result object
+        List<Map<String, Object>> resultList = response.jsonPath().getList("result");
+        Assert.assertFalse(resultList.isEmpty(), "Result list is empty. No organization info found.");
+
+        Map<String, Object> orgData = resultList.get(0);
+
+        String returnedOrgId = (String) orgData.get("id");
+        String email = (String) orgData.get("email");
+        String userId = (String) orgData.get("user_id");
+        String deleted = (String) orgData.get("deleted");
+
+        // Assert essential fields
+        Assert.assertEquals(returnedOrgId, organizationId, "Organization ID mismatch");
+        Assert.assertNotNull(email, "Email should not be null");
+        Assert.assertNotNull(userId, "User ID should not be null");
+        Assert.assertEquals(deleted, "false", "Deleted flag should be 'false'");
+
+    }
+
 
 }

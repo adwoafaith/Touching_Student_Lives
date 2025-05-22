@@ -48,4 +48,17 @@ public class OrganizationsEndpoint {
         return response;
 
     }
+    public static Response deleteOrganizations(String organizationId){
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization","Bearer "+authToken)
+                .header("Connection","keep-alive")
+                .header("x-client-type","web")
+                .pathParam("organization_id",organizationId)
+                .when()
+                .delete(Routes.deleteOrganizations);
+        return response;
+
+    }
+
 }
