@@ -2,7 +2,7 @@ name: Triggered by Repo B
 
 on:
   repository_dispatch:
-    types: [trigger-from-repo-b]
+    types: [trigger-repo-b]
 
 jobs:
   from-repo-b:
