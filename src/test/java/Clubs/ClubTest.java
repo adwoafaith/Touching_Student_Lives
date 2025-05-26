@@ -11,18 +11,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ClubTest {
-    private static String newlyCreatedClubId;
-    private static String clubAdminId;
-    private static String institutionId;
-    private static String countryId;
+    public static String clubAdminId;
+    public static String institutionId;
+    public static String countryId;
 
     @Test(priority = 1)
     public void getClubTestCase() {
         Response response = ClubEndpoint.getClubs();
-        response.then().log().all();
+        response.then().log().body();
         Assert.assertEquals(response.statusCode(), 200);
 
-        // Parse JSON response
         JsonPath jsonPath = response.jsonPath();
         List<Map<String, Object>> clubs = jsonPath.getList("data");
 
@@ -34,7 +32,7 @@ public class ClubTest {
             String clubAdminEmail = createdBy.get("email").toString();
 
             if (clubAdminEmail.equals(LoginTest.email)) {
-                //clubAdminId = club.get("club_admin").toString();
+                clubAdminId = club.get("club_admin").toString();
                 institutionId = club.get("institution_id").toString();
                 countryId = club.get("country_id").toString();
 
@@ -52,91 +50,67 @@ public class ClubTest {
         }
     }
 
-    // Data Provider that supplies ClubPayload with extracted IDs
-    @DataProvider(name = "clubDataProvider")
-    public Object[][] provideClubData() {
-        ClubPayload clubPayload = new ClubPayload();
-        clubPayload.setName("Automation Club");
-        clubPayload.setDescription("A test club created using RestAssured");
-        clubPayload.setInstitution_id(institutionId);  // Use extracted institution ID
-        clubPayload.setCountry_id(countryId);  // Use extracted country ID
-        clubPayload.setIs_active(true);
-        clubPayload.setClub_logo_url("https://example.com/logo.png");
-        clubPayload.setClub_banner_url("https://example.com/banner.png");
-
-        return new Object[][]{{clubPayload}};
-    }
 
 
 
-    @Test(priority = 2, dependsOnMethods = "getClubTestCase", dataProvider = "clubDataProvider")
+
+    @Test(priority = 2, dataProvider = "clubDataProvider",dataProviderClass = ClubDataProvider.class)
     public void createClubTestCase(ClubPayload clubPayload) {
         Response response = ClubEndpoint.createClub(clubPayload);
-        response.then().log().all();
+        response.then().log().body();
         Assert.assertEquals(response.statusCode(), 201);
 
-        // Attempt to extract the club ID from the "Location" header
-        String locationHeader = response.getHeader("Location");
-        if (locationHeader != null && locationHeader.contains("/clubs/")) {
-             String clubId = locationHeader.substring(locationHeader.lastIndexOf("/") + 1);
-            // Ensure clubId was extracted correctly
-            Assert.assertNotNull(clubId, "Club ID should not be null!");
+        clubAdminId = response.jsonPath().getString("id");
+        String name = response.jsonPath().getString("name");
+        String description = response.jsonPath().getString("description");
 
-            System.out.println("Extracted Club ID from Headers: " + clubId);
-        }
+        Assert.assertNotNull(name,"Name is null");
+        Assert.assertNotNull(description,"Description is null");
 
     }
-
-
-
-    //fetch all clubs the second time in other to get the latest or newly create club
-    // Declare the variable at the class level so it's accessible across methods
 
     @Test(priority = 3, dependsOnMethods = "createClubTestCase")
     public void getClubTestCaseAfterCreation() {
         Response response = ClubEndpoint.getClubs();
-        response.then().log().all();
+        response.then().log().body();
         Assert.assertEquals(response.statusCode(), 200);
 
         JsonPath jsonPath = response.jsonPath();
         List<Map<String, Object>> updatedClubs = jsonPath.getList("data");
-
         boolean clubFound = false;
 
         for (Map<String, Object> club : updatedClubs) {
             String clubName = club.get("name").toString();
 
             if (clubName.equals("Automation Club")) {
-                newlyCreatedClubId = club.get("id").toString(); // Assigning the ID to the class variable
-                System.out.println("Newly Created Club ID: " + newlyCreatedClubId);
+                clubAdminId = club.get("id").toString(); // Assigning the ID to the class variable
+                System.out.println("Newly Created Club ID: " + clubAdminId);
                 clubFound = true;
                 break;
             }
         }
 
         Assert.assertTrue(clubFound, "No new club found after creation!");
-        Assert.assertNotNull(newlyCreatedClubId, "Newly created club ID should not be null!");
+        Assert.assertNotNull(clubAdminId, "Newly created club ID should not be null!");
     }
 
 
 
-    @Test(priority = 4, dependsOnMethods = "getClubTestCaseAfterCreation")
+    @Test(priority = 4)
     public void getSingleClub(){
-
-        Response response = ClubEndpoint.getSingleClub(newlyCreatedClubId);
-        response.then().log().all();
+        Response response = ClubEndpoint.getSingleClub(clubAdminId);
+        response.then().log().body();
 
         JsonPath jsonPath = response.jsonPath();
 
-        //perform assertions
         Assert.assertEquals(response.getStatusCode(), 200,"Expected status code 200 not received");
         Assert.assertTrue(jsonPath.getMap("$").containsKey("name"), "Response does not contain 'name' property");
     }
 
 
-    @Test(priority = 5, dependsOnMethods = "getClubTestCaseAfterCreation")
+    @Test(priority = 5)
     public void deleteClub(){
-        Response response = ClubEndpoint.deleteClub(newlyCreatedClubId);
-        response.then().log().all();
+        Response response = ClubEndpoint.deleteClub(clubAdminId);
+        response.then().log().body();
     }
 }
