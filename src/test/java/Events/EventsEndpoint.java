@@ -4,28 +4,29 @@ import Routes.Routes;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import java.io.File;
-import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static WebAdminLoginTest.LoginTest.authToken;
 
 public class EventsEndpoint {
 
-    public static Response createEvent(Map<String, Object> formData) {
+    public static Response createEvent(String payload) {
         RequestSpecification request = given()
                 .header("Authorization", "Bearer " + authToken)
+                .header("x-client-type", "web")
+                .body(payload)
                 .contentType("multipart/form-data");
-
-        // Add form-data parameters
-        // Add all form parts
-        for (Map.Entry<String, Object> entry : formData.entrySet()) {
-            if (entry.getValue() instanceof File) {
-                File file = (File) entry.getValue();
-                request.multiPart(entry.getKey(), file, "image/jpeg");  // Explicit MIME type
-            } else {
-                request.multiPart(entry.getKey(), entry.getValue().toString());
-            }
-        }
+//
+//        // Add form-data parameters
+//        // Add all form parts
+//        for (Map.Entry<String, Object> entry : formData.entrySet()) {
+//            if (entry.getValue() instanceof File) {
+//                File file = (File) entry.getValue();
+//                request.multiPart(entry.getKey(), file, "image/jpeg");  // Explicit MIME type
+//            } else {
+//                request.multiPart(entry.getKey(), entry.getValue().toString());
+//            }
+//        }
 
         return request.post(Routes.creatingEventsPost);
     }

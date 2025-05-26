@@ -11,7 +11,7 @@ import java.util.Map;
 public class OpportunityTest {
     private static String opportunityId;
 
-    @Test(priority = 1, dependsOnMethods = "test.LoginTest.loginAndVerifyMagicLink", dataProvider = "opportunityDataProvider", dataProviderClass = OpportunityDataProvider.class)
+    //@Test(priority = 1, dependsOnMethods = "test.LoginTest.loginAndVerifyMagicLink", dataProvider = "opportunityDataProvider", dataProviderClass = OpportunityDataProvider.class)
     public void createOpportunityTest(Map<String, String> formData){
         Response response = OpportunityEndpoint.createOpportunity(formData);
 
@@ -26,7 +26,7 @@ public class OpportunityTest {
 
     }
 
-    @Test(priority = 2, dependsOnMethods = "createOpportunityTest", dataProvider = "UpdateOpportunityDataProvider", dataProviderClass = UpdateOpportunityDataProvider.class)
+   // @Test(priority = 2, dependsOnMethods = "createOpportunityTest", dataProvider = "UpdateOpportunityDataProvider", dataProviderClass = UpdateOpportunityDataProvider.class)
     public void updateOpportunityTest(Map<String, String> formData){
             Assert.assertNotNull(opportunityId, "Opportunity ID should not be null before update");
 

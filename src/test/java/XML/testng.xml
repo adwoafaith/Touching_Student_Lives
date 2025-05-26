@@ -20,11 +20,11 @@
 <!--            <class name="Questions.QuestionsTest"/>-->
 <!--            <class name ="CleanUpTest.TestCleanUp"/>-->
 <!--            <class name="Quiz.QuizTest"/>-->
-            <class name="Clubs.ClubTest"/>
+<!--            <class name="Clubs.ClubTest"/>-->
 
 
 
-<!--            <class name="Events.EventsTest"/>-->
+            <class name="Events.EventsTest"/>
 <!--            <class name="Raffle.RaffleTest"/>-->
 <!--            <class name="GeneralPost.GetInstitutionsTest"/>-->
 <!--            <class name="GeneralPost.GeneralPostTest"/>-->

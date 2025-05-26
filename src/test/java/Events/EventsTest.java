@@ -10,10 +10,10 @@ public class EventsTest {
     public static String eventId;
 
     @Test(priority = 1, dataProvider = "eventDataProvider", dataProviderClass = EventDataProvider.class)
-    public void createEventTest(Map<String, Object> formData) {
+    public void createEventTest(String payload) {
 
 
-        Response response = EventsEndpoint.createEvent(formData);
+        Response response = EventsEndpoint.createEvent(payload);
         eventId = response.jsonPath().getString("id");
         if(response.getStatusCode() != 201) {
             System.out.println("Full Response:");
@@ -23,16 +23,12 @@ public class EventsTest {
         Assert.assertEquals(response.getStatusCode(), 201, "Status code is not 201!");
         response.then().log().body();
 
-        Assert.assertEquals(
-                response.jsonPath().getString("title"),
-                formData.get("title").toString(),  // Added .toString() for Object
-                "Title doesn't match!"
-        );
-        Assert.assertEquals(
-                response.jsonPath().getString("status"),
-                formData.get("status").toString(),  // Added .toString() for Object
-                "Status doesn't match!"
-        );
+        String title = response.jsonPath().getString("title");
+        String status = response.jsonPath().getString("status");
+
+        Assert.assertEquals(title,"Tech Conference 2025", "Title does not match");
+        Assert.assertEquals(status,"active", "status does not match");
+
     }
 
     @Test(priority = 2)
