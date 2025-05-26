@@ -1,0 +1,1 @@
+{"uuid":"5a8ef2df-be58-472a-9b92-3644914dc0b5","name":"Tests.OnboardingTest","children":["42b16529-0d46-4ab2-afd9-21ff3ff25e67"],"befores":[{"name":"startAppiumServer","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747759200844,"stop":1747759204171}],"afters":[],"start":1747759200772,"stop":1747759313032}

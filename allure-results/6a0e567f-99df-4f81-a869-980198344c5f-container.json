@@ -1,0 +1,1 @@
+{"uuid":"6a0e567f-99df-4f81-a869-980198344c5f","name":"Tests.SignInTest","children":["ce608e90-4c0d-4c5a-9e65-eb085ca066ff"],"befores":[{"name":"startAppiumServer","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747759274705,"stop":1747759286634}],"afters":[],"start":1747759200773,"stop":1747759313034}
