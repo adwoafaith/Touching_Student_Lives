@@ -54,7 +54,7 @@ public class OrganizationsTest{
 
     }
 
-    //@Test(dataProvider = "updatedOrganizationPayloadProvider", dataProviderClass = UpdateOrganizationDataProvider.class)
+    @Test(dataProvider = "updatedOrganizationPayloadProvider", dataProviderClass = UpdateOrganizationDataProvider.class)
     public void updateOrganizationsTest(String organizationId, String organizationPayload) {
         Response response = OrganizationsEndpoint.updateOrganizations(organizationPayload, organizationId);
         response.then().log().all();
